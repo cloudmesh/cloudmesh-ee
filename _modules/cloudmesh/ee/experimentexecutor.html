@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cloudmesh.sbatch.sbatch &mdash; cloudmesh-sbatch 4.3.20 documentation</title>
+  <title>cloudmesh.ee.experimentexecutor &mdash; cloudmesh-ee 4.3.20 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -34,7 +34,7 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            cloudmesh-sbatch
+            cloudmesh-ee
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -46,13 +46,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Cloudmesh Sbatch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../manual/sbatch.html">Command sbatch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Cloudmesh ee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manual/ee.html">Command ee</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../slurm.html">Slurm on a single node computer</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../api.html">Cloudmesh sbatch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">Cloudmesh ee</a></li>
 </ul>
 
         </div>
@@ -61,7 +61,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">cloudmesh-sbatch</a>
+          <a href="../../../index.html">cloudmesh-ee</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -70,7 +70,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">cloudmesh.sbatch.sbatch</li>
+      <li class="breadcrumb-item active">cloudmesh.ee.experimentexecutor</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -79,7 +79,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for cloudmesh.sbatch.sbatch</h1><div class="highlight"><pre>
+  <h1>Source code for cloudmesh.ee.experimentexecutor</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -108,7 +108,7 @@
 <span class="n">OptStr</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="SBatch"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch">[docs]</a><span class="k">class</span> <span class="nc">SBatch</span><span class="p">:</span>
+<div class="viewcode-block" id="ExperimentExecutor"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor">[docs]</a><span class="k">class</span> <span class="nc">ExperimentExecutor</span><span class="p">:</span>
 
     <span class="c1"># def config_read(self, path=&quot;./config.yaml&quot;):</span>
     <span class="c1">#     print (path)</span>
@@ -116,9 +116,9 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize the SBatch Object</span>
+<span class="sd">        Initialize the ExperimentExecutor Object</span>
 
-<span class="sd">        :param verbose: If true prints additional infromation when SBatch methods are called</span>
+<span class="sd">        :param verbose: If true prints additional infromation when ExperimentExecutor methods are called</span>
 <span class="sd">        :type verbose: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">flat</span> <span class="o">=</span> <span class="n">FlatDict</span><span class="p">({},</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
@@ -139,9 +139,9 @@
         <span class="c1"># self.gpu = None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">copycode</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="SBatch.info"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.info">[docs]</a>    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.info"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.info">[docs]</a>    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Prints information about the SBatch object for debugging purposes</span>
+<span class="sd">        Prints information about the ExperimentExecutor object for debugging purposes</span>
 
 <span class="sd">        :param verbose:  if True prints even more information</span>
 <span class="sd">        :type verbose: bool</span>
@@ -223,7 +223,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template_content</span><span class="p">)</span>
         <span class="n">banner</span><span class="p">(</span><span class="s2">&quot;END TEMPLATE&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SBatch.update_with_directory"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.update_with_directory">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ExperimentExecutor.update_with_directory"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.update_with_directory">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">update_with_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        prefix with the directory if the filename is not starting with . / ~</span>
@@ -242,7 +242,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">filename</span></div>
 
-<div class="viewcode-block" id="SBatch.get_data"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.get_data"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        converts the data from the yaml file with the flatdict</span>
 
@@ -260,7 +260,7 @@
 
         <span class="k">return</span> <span class="n">result</span></div>
 
-<div class="viewcode-block" id="SBatch.spec_replace"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.spec_replace">[docs]</a>    <span class="k">def</span> <span class="nf">spec_replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.spec_replace"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.spec_replace">[docs]</a>    <span class="k">def</span> <span class="nf">spec_replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        given a spec in yaml format, replaces all values in the yaml file that</span>
 <span class="sd">        are of the form &quot;{a.b}&quot; with the value of</span>
@@ -317,7 +317,7 @@
         <span class="n">banner</span><span class="p">(</span><span class="s2">&quot;END MUNCH&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">spec</span></div>
 
-<div class="viewcode-block" id="SBatch.update_from_os"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.update_from_os">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_os</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.update_from_os"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.update_from_os">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_os</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        LOads all variables from os.environ into self.data with os.name</span>
 
@@ -333,7 +333,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;os&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
 
-<div class="viewcode-block" id="SBatch.load_source_template"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.load_source_template">[docs]</a>    <span class="k">def</span> <span class="nf">load_source_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.load_source_template"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.load_source_template">[docs]</a>    <span class="k">def</span> <span class="nf">load_source_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Registers and reads the template script in for processing</span>
 
@@ -348,7 +348,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">template_content</span> <span class="o">=</span> <span class="n">readfile</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_content</span></div>
 
-<div class="viewcode-block" id="SBatch.update_from_dict"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.update_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.update_from_dict"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.update_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a dict to self. data</span>
 
@@ -360,7 +360,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
 
-<div class="viewcode-block" id="SBatch.update_from_attributes"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.update_from_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attributes</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.update_from_attributes"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.update_from_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attributes</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        attributes are of the form &quot;a=1,b=3&quot;</span>
 
@@ -378,7 +378,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">update_from_dict</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
 
-<div class="viewcode-block" id="SBatch.update_from_os_environ"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.update_from_os_environ">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_os_environ</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.update_from_os_environ"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.update_from_os_environ">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_os_environ</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates the config file output to include OS environment variables</span>
 
@@ -388,7 +388,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">update_from_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
 
-<div class="viewcode-block" id="SBatch.update_from_cm_variables"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.update_from_cm_variables">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_cm_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.update_from_cm_variables"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.update_from_cm_variables">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_cm_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds Cloudmesh variables to the class&#39;s data parameter as a flat dict.</span>
 
@@ -416,7 +416,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span>
 
-<div class="viewcode-block" id="SBatch.update_from_file"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.update_from_file">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.update_from_file"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.update_from_file">[docs]</a>    <span class="k">def</span> <span class="nf">update_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates the configuration self.data with the data within the passed file.</span>
 
@@ -490,7 +490,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
 
-<div class="viewcode-block" id="SBatch.generate"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fences</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="p">,</span> <span class="s2">&quot;}&quot;</span><span class="p">)):</span>
+<div class="viewcode-block" id="ExperimentExecutor.generate"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fences</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="p">,</span> <span class="s2">&quot;}&quot;</span><span class="p">)):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Expands the script template given the passed configuration.</span>
 
@@ -523,7 +523,7 @@
                 <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">content</span><span class="p">,</span> <span class="n">replaced</span></div>
 
-<div class="viewcode-block" id="SBatch.permutation_generator"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.permutation_generator">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ExperimentExecutor.permutation_generator"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.permutation_generator">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">permutation_generator</span><span class="p">(</span><span class="n">exp_dict</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates a cartisian product of a {key: list, ...} object.</span>
@@ -545,7 +545,7 @@
         <span class="n">keys</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">exp_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
         <span class="k">return</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">values</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="SBatch.generate_experiment_permutations"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.generate_experiment_permutations">[docs]</a>    <span class="k">def</span> <span class="nf">generate_experiment_permutations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable_str</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.generate_experiment_permutations"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.generate_experiment_permutations">[docs]</a>    <span class="k">def</span> <span class="nf">generate_experiment_permutations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable_str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates experiment permutations based on the passed string and appends it to the current instance.</span>
 
@@ -628,7 +628,7 @@
             <span class="n">config</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">/config.yaml&quot;</span>
 
             <span class="n">variables</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;experiment&#39;</span><span class="p">:</span> <span class="n">permutation</span><span class="p">})</span>
-            <span class="n">variables</span><span class="p">[</span><span class="s2">&quot;sbatch&quot;</span><span class="p">][</span><span class="s2">&quot;identifier&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">identifier</span>
+            <span class="n">variables</span><span class="p">[</span><span class="s2">&quot;ee&quot;</span><span class="p">][</span><span class="s2">&quot;identifier&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">identifier</span>
 
             <span class="n">configuration</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span>
@@ -641,7 +641,7 @@
             <span class="p">}</span>
         <span class="k">return</span> <span class="n">configuration</span>
 
-<div class="viewcode-block" id="SBatch.generate_experiment_batch_scripts"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.generate_experiment_batch_scripts">[docs]</a>    <span class="k">def</span> <span class="nf">generate_experiment_batch_scripts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace_all</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.generate_experiment_batch_scripts"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.generate_experiment_batch_scripts">[docs]</a>    <span class="k">def</span> <span class="nf">generate_experiment_batch_scripts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace_all</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Utility method to genrerate either hierarchical or flat outputs; or debug.</span>
 
@@ -676,14 +676,14 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">generate_setup_from_configuration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">replace_all</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SBatch.generate_submit"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.generate_submit">[docs]</a>    <span class="k">def</span> <span class="nf">generate_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">job_type</span><span class="o">=</span><span class="s1">&#39;slurm&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.generate_submit"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.generate_submit">[docs]</a>    <span class="k">def</span> <span class="nf">generate_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">job_type</span><span class="o">=</span><span class="s1">&#39;slurm&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a list of commands based on the permutations for submission</span>
 
 <span class="sd">        :param name: Name of the experiments</span>
 <span class="sd">        :type name: str</span>
 <span class="sd">        :param job_type: name of the job type used at submission such as</span>
-<span class="sd">                         sbatch, slurm, jsrun, mpirun, sh, bash</span>
+<span class="sd">                         ee, slurm, jsrun, mpirun, sh, bash</span>
 <span class="sd">        :type job_type: str</span>
 <span class="sd">        :return: prepars the internal data for the experiments, if set to verbose, prints them</span>
 <span class="sd">        :rtype: None</span>
@@ -693,7 +693,7 @@
             <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.json&quot;</span>
 
         <span class="k">if</span> <span class="n">job_type</span> <span class="o">==</span> <span class="s1">&#39;slurm&#39;</span><span class="p">:</span>
-            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;sbatch&#39;</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;ee&#39;</span>
         <span class="k">elif</span> <span class="n">job_type</span> <span class="o">==</span> <span class="s1">&#39;lsf&#39;</span><span class="p">:</span>
             <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;bsub&#39;</span>
         <span class="k">else</span><span class="p">:</span>
@@ -719,7 +719,7 @@
             <span class="n">script</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">experiment</span><span class="p">[</span><span class="s2">&quot;script&quot;</span><span class="p">])</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">parameters</span><span class="si">}</span><span class="s2"> cd </span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">script</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SBatch.generate_setup_from_configuration"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.generate_setup_from_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">generate_setup_from_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">replace_all</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.generate_setup_from_configuration"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.generate_setup_from_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">generate_setup_from_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">replace_all</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        generates a setup directory from the configuration parameters</span>
 <span class="sd">        :param configuration: the configuration dict</span>
@@ -737,7 +737,7 @@
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- write file </span><span class="si">{</span><span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
             <span class="c1"># Generate UUID for each perm</span>
-            <span class="n">experiment</span><span class="p">[</span><span class="s2">&quot;variables&quot;</span><span class="p">][</span><span class="s1">&#39;sbatch&#39;</span><span class="p">][</span><span class="s1">&#39;uuid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+            <span class="n">experiment</span><span class="p">[</span><span class="s2">&quot;variables&quot;</span><span class="p">][</span><span class="s1">&#39;ee&#39;</span><span class="p">][</span><span class="s1">&#39;uuid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
 
             <span class="c1">#</span>
             <span class="c1"># CREATE SLURM SBATCH PARAMETERS FORM A KEY based on experiment.card_name</span>
@@ -748,7 +748,7 @@
 
             <span class="n">experiment</span><span class="p">[</span><span class="s2">&quot;variables&quot;</span><span class="p">][</span><span class="s2">&quot;slurm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;directive&quot;</span><span class="p">:</span> <span class="n">rivanna</span><span class="o">.</span><span class="n">directive</span><span class="p">[</span><span class="n">host</span><span class="p">][</span><span class="n">key</span><span class="p">],</span>
-                <span class="s2">&quot;sbatch&quot;</span><span class="p">:</span> <span class="n">rivanna</span><span class="o">.</span><span class="n">create_slurm_directives</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="s2">&quot;ee&quot;</span><span class="p">:</span> <span class="n">rivanna</span><span class="o">.</span><span class="n">create_slurm_directives</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
             <span class="p">}</span>
             <span class="c1">#</span>
             <span class="c1"># END GENERATE SLURM SBATCH</span>
@@ -792,7 +792,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SBatch.save_experiment_configuration"><a class="viewcode-back" href="../../../cloudmesh.sbatch.html#cloudmesh.sbatch.sbatch.SBatch.save_experiment_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">save_experiment_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ExperimentExecutor.save_experiment_configuration"><a class="viewcode-back" href="../../../cloudmesh.ee.html#cloudmesh.ee.experimentexecutor.ExperimentExecutor.save_experiment_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">save_experiment_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Saves the experiment configuration in a json file</span>
 

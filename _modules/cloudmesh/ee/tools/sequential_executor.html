@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cloudmesh.sbatch.tools.sequential_executor &mdash; cloudmesh-sbatch 4.3.20 documentation</title>
+  <title>cloudmesh.ee.tools.sequential_executor &mdash; cloudmesh-ee 4.3.20 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
@@ -34,7 +34,7 @@
           
           
           <a href="../../../../index.html" class="icon icon-home">
-            cloudmesh-sbatch
+            cloudmesh-ee
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -46,13 +46,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">Cloudmesh Sbatch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../manual/sbatch.html">Command sbatch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">Cloudmesh ee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../manual/ee.html">Command ee</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../slurm.html">Slurm on a single node computer</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">Cloudmesh sbatch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">Cloudmesh ee</a></li>
 </ul>
 
         </div>
@@ -61,7 +61,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">cloudmesh-sbatch</a>
+          <a href="../../../../index.html">cloudmesh-ee</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -70,7 +70,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">cloudmesh.sbatch.tools.sequential_executor</li>
+      <li class="breadcrumb-item active">cloudmesh.ee.tools.sequential_executor</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -79,7 +79,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for cloudmesh.sbatch.tools.sequential_executor</h1><div class="highlight"><pre>
+  <h1>Source code for cloudmesh.ee.tools.sequential_executor</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Sequential Executor</span>
 
@@ -99,7 +99,7 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">docopt</span> <span class="kn">import</span> <span class="n">docopt</span>
 
-<div class="viewcode-block" id="SequentialExecutor"><a class="viewcode-back" href="../../../../cloudmesh.sbatch.tools.html#cloudmesh.sbatch.tools.sequential_executor.SequentialExecutor">[docs]</a><span class="k">class</span> <span class="nc">SequentialExecutor</span><span class="p">:</span>
+<div class="viewcode-block" id="SequentialExecutor"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.sequential_executor.SequentialExecutor">[docs]</a><span class="k">class</span> <span class="nc">SequentialExecutor</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dryrun</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
@@ -110,7 +110,7 @@
 
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;SequentialExecutor initialized&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SequentialExecutor.load_yaml"><a class="viewcode-back" href="../../../../cloudmesh.sbatch.tools.html#cloudmesh.sbatch.tools.sequential_executor.SequentialExecutor.load_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">load_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">):</span>
+<div class="viewcode-block" id="SequentialExecutor.load_yaml"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.load_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">load_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading YAML file: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">yaml_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
@@ -118,7 +118,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;steps&#39;</span><span class="p">,</span> <span class="p">[])</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;YAML file loaded successfully&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SequentialExecutor.run"><a class="viewcode-back" href="../../../../cloudmesh.sbatch.tools.html#cloudmesh.sbatch.tools.sequential_executor.SequentialExecutor.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SequentialExecutor.run"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Executing step: </span><span class="si">%s</span><span class="s2"> on host: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span><span class="p">:</span>
@@ -137,31 +137,31 @@
         <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Step &#39;</span><span class="si">%s</span><span class="s2">&#39; failed&quot;</span><span class="p">,</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="SequentialExecutor.prepare"><a class="viewcode-back" href="../../../../cloudmesh.sbatch.tools.html#cloudmesh.sbatch.tools.sequential_executor.SequentialExecutor.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<div class="viewcode-block" id="SequentialExecutor.prepare"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Preparing in step: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span></div>
         <span class="c1"># Add your preparation logic here</span>
 
-<div class="viewcode-block" id="SequentialExecutor.fetch"><a class="viewcode-back" href="../../../../cloudmesh.sbatch.tools.html#cloudmesh.sbatch.tools.sequential_executor.SequentialExecutor.fetch">[docs]</a>    <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<div class="viewcode-block" id="SequentialExecutor.fetch"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.fetch">[docs]</a>    <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Fetching data in step: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span></div>
         <span class="c1"># Add your fetching logic here</span>
 
-<div class="viewcode-block" id="SequentialExecutor.load_json"><a class="viewcode-back" href="../../../../cloudmesh.sbatch.tools.html#cloudmesh.sbatch.tools.sequential_executor.SequentialExecutor.load_json">[docs]</a>    <span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_path</span><span class="p">):</span>
+<div class="viewcode-block" id="SequentialExecutor.load_json"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.load_json">[docs]</a>    <span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_path</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading JSON file: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json_path</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
             <span class="n">json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;JSON file loaded successfully&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">json_data</span></div>
 
-<div class="viewcode-block" id="SequentialExecutor.execute_with_json"><a class="viewcode-back" href="../../../../cloudmesh.sbatch.tools.html#cloudmesh.sbatch.tools.sequential_executor.SequentialExecutor.execute_with_json">[docs]</a>    <span class="k">def</span> <span class="nf">execute_with_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_path</span><span class="p">):</span>
+<div class="viewcode-block" id="SequentialExecutor.execute_with_json"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_json">[docs]</a>    <span class="k">def</span> <span class="nf">execute_with_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_path</span><span class="p">):</span>
         <span class="n">json_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">json_path</span><span class="p">)</span></div>
         <span class="c1"># Process the json_data as needed</span>
         <span class="c1"># For example, you can iterate through the data and perform actions</span>
 
-<div class="viewcode-block" id="SequentialExecutor.execute_with_yaml"><a class="viewcode-back" href="../../../../cloudmesh.sbatch.tools.html#cloudmesh.sbatch.tools.sequential_executor.SequentialExecutor.execute_with_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">execute_with_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">):</span>
+<div class="viewcode-block" id="SequentialExecutor.execute_with_yaml"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">execute_with_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">yaml_path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="SequentialExecutor.execute"><a class="viewcode-back" href="../../../../cloudmesh.sbatch.tools.html#cloudmesh.sbatch.tools.sequential_executor.SequentialExecutor.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SequentialExecutor.execute"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">()</span>
 
         <span class="n">description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;No description&#39;</span><span class="p">)</span>

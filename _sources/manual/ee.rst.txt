@@ -1,11 +1,11 @@
-Command sbatch
-==============
+Command ee
+==========
 
 ::
 
   Usage:
-        sbatch generate submit --name=NAME [--job_type=JOB_TYPE] [--verbose]
-        sbatch generate --source=SOURCE --name=NAME
+        ee generate submit --name=NAME [--job_type=JOB_TYPE] [--verbose]
+        ee generate --source=SOURCE --name=NAME
                         [--out=OUT]
                         [--verbose]
                         [--mode=MODE]
@@ -20,12 +20,12 @@ Command sbatch
                         [--experiment=EXPERIMENT]
                         [--flat]
                         [--copycode=CODE]
-        sbatch slurm start
-        sbatch slurm stop
-        sbatch slurm info
-        sbatch seq --yaml=YAML|--json=JSON
+        ee slurm start
+        ee slurm stop
+        ee slurm info
+        ee seq --yaml=YAML|--json=JSON
 
-  sbatch allows the creation of parameterized batch
+  Expermine Executor (ee) allows the creation of parameterized batch
   scripts. The initial support includes slurm, but we intend
   also to support LSF. Parameters can be specified on the
   commandline or in configuration files. Configuration files
@@ -43,7 +43,7 @@ Command sbatch
   file.
 
   Arguments:
-      FILENAME       name of a slurm script generated with sbatch
+      FILENAME       name of a slurm script generated with ee
       CONFIG_FILE    yaml file with configuration
       ACCOUNT        account name for host system
       SOURCE         name for input script slurm.in.sh, lsf.in.sh,
@@ -85,14 +85,14 @@ Command sbatch
 
     > Examples:
     >
-    > cms sbatch generate slurm.in.sh --verbose \\
+    > cms ee generate slurm.in.sh --verbose \\
     >     --config=a.py,b.json,c.yaml \\
     >     --attributes=a=1,b=4 \\
     >     --dryrun --noos --input_dir=example \\
     >     --experiment=\"epoch=[1-3] x=[1,4] y=[10,11]\" \\
     >     --name=a --mode=h
     >
-    > cms sbatch generate slurm.in.sh \\
+    > cms ee generate slurm.in.sh \\
     >    --config=a.py,b.json,c.yaml \\
     >    --attributes=a=1,b=4 \\
     >    --noos \\
@@ -101,8 +101,8 @@ Command sbatch
     >    --name=a \\
     >    --mode=h
     >            >
-    > cms sbatch generate slurm.in.sh --experiments-file=experiments.yaml --name=a
+    > cms ee generate slurm.in.sh --experiments-file=experiments.yaml --name=a
     >
-    > cms sbatch generate submit --name=a
+    > cms ee generate submit --name=a
 
 
