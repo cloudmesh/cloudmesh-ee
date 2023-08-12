@@ -1,7 +1,7 @@
 ###############################################################
-# pytest -v --capture=no tests/test_sbatch.py
-# pytest -v  tests/test_sbatch.py
-# pytest -v --capture=no  tests/test_sbatch.py::Test_sbatch::<METHODNAME>
+# pytest -v --capture=no tests/test_ee.py
+# pytest -v  tests/test_ee.py
+# pytest -v --capture=no  tests/test_ee.py::Test_ee::<METHODNAME>
 ###############################################################
 import pytest
 import yaml
@@ -60,12 +60,12 @@ class TestConfig:
 
     def test_help(self):
         Benchmark.Start()
-        command = "cms sbatch help"
+        command = "cms ee help"
         result = Shell.run(command)
         Benchmark.Stop()
         # print (result)
-        # assert "sbatch allows the creation of parameterized" in result
-        assert "sbatch" in result
+        # assert "ee allows the creation of parameterized" in result
+        assert "ee" in result
 
     def test_experiment_yaml_py(self):
         HEADING()
@@ -77,7 +77,7 @@ class TestConfig:
 
         command = format_command(
             f"""
-            cms sbatch generate 
+            cms ee generate 
                        --source=slurm.in.sh 
                        --config=c.yaml,a.py,exp_dict.yaml,d.ipynb
             #            --config=c.yaml
@@ -121,7 +121,7 @@ class TestConfig:
 
         command = format_command(
             f"""
-            cms sbatch generate 
+            cms ee generate 
                        --source=slurm.in.sh 
                        --config=c.yaml,a.py,exp_dict.yaml,d.ipynb
             #            --config=c.yaml
@@ -163,7 +163,7 @@ class TestConfig:
         config = f"{example}/a.py,{example}/b.json,{example}/c.yaml"
         command = format_command(
             f"""
-            cms sbatch generate 
+            cms ee generate 
                       --source=slurm.in.sh 
                       --config=c.yaml,a.py,exp_dict.yaml,d.ipynb
             #            --config=c.yaml
@@ -213,7 +213,7 @@ class TestConfig:
     #     config = f"{example}/a.py,{example}/b.json,{example}/c.yaml"
     #     command = format_command(
     #         f"""
-    #         cms sbatch generate {tests_dir}/example.in/slurm.in.sh
+    #         cms ee generate {tests_dir}/example.in/slurm.in.sh
     #                --verbose
     #                --config={config}
     #                --attributes=name=gregor,a=1,b=4

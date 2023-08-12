@@ -1,4 +1,4 @@
-cloudmesh-sbatch
+cloudmesh-ee
 ================
 
 Generation of experiment submission scripts based on parameter permutations.
@@ -9,7 +9,7 @@ Generation of experiment submission scripts based on parameter permutations.
    :caption: Documentation
 
    readme
-   manual/sbatch
+   manual/ee
    slurm
 
 .. toctree::

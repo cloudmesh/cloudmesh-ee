@@ -1,4 +1,4 @@
-Cloudmesh Sbatch
+Cloudmesh ee
 ================
 
 A general purpose HPC Template and Experiment management system
@@ -30,7 +30,7 @@ accessible resources. In some cases these restrictions are soo
 established that removing them is impractical and takes weeks to
 implement temporarily.
 
-Cloudmesh-sbatch is a framework that wraps the batch processor (for SLURM and LSF)
+Cloudmesh-ee is a framework that wraps the batch processor (for SLURM and LSF)
 into a templated framework such that experiments can be generated based
 on configuration files focusing on the live cycle of generating many
 permutations of experiments with standard tooling, so that you can focus
@@ -43,15 +43,15 @@ executed according to center policies.
 Instalation
 -----------
 
-When you install cloudmesh-sbatch, you will also be installing cloudmesh
-shell (`cms`) as part of the Cloudmesh ecosystem. It allows cloudmesh sbatch to
+When you install cloudmesh-ee, you will also be installing cloudmesh
+shell (`cms`) as part of the Cloudmesh ecosystem. It allows cloudmesh ee to
 be run either in commandline or scripted mode.
 
 The instalation is easy via pip
 
 .. code-block:: console
 
-   $ pip install cloudmesh-sbatch
+   $ pip install cloudmesh-ee
    $ cms help
 
 Please do not forget to say `cms help` the first time you use cms as it set
@@ -59,7 +59,7 @@ it up with some default values.
 The SLURM or LSF commands are  not needed to be installed locally, as we assume that
 all access to the batch environment is conducted indirectly and remotely through `ssh`.
 
-In case you like to install cloudmesh-sbatch from source we have a convenient
+In case you like to install cloudmesh-ee from source we have a convenient
 program that downloads all cloudmesh repositories its depeds on.
 
 .. code-block:: console
@@ -70,22 +70,22 @@ program that downloads all cloudmesh repositories its depeds on.
    $ mkdir cm
    $ cd cm
    $ pip install cloudmesh-installer
-   $ cloudmesh-installer get sbatch
+   $ cloudmesh-installer get ee
    $ cms help
 
 
 NOTE THIS IS OUTDATED FROM HERE ON AND NEEDS TO BE UPDATED
 
 
-Running Cloudmesh SBatch
+Running Cloudmesh ee
 ------------------------
 
-The ``cloudmesh sbatch`` command takes one of two forms of execution. It
+The ``cloudmesh ee`` command takes one of two forms of execution. It
 is started with
 
 .. code-block:: console
 
-   $ cms sbatch <command> <parameters>
+   $ cms ee <command> <parameters>
 
 Where the command invokes a partiuclar action and parameters include a
 number of parameters for the command These commands allow you to inspect
@@ -95,7 +95,7 @@ expected and as intended.
 In general, configuration arguments that appear in multiple locations
 are prioritized in the following order (highest priority first)
 
-1. CLI Arguments with ``cms sbatch``
+1. CLI Arguments with ``cms ee``
 2. Configuration Files
 3. Preset values
 
@@ -110,7 +110,7 @@ the command using either of the below forms:
 
 .. code:: text
 
-   cms sbatch generate SOURCE
+   cms ee generate SOURCE
                        --name=NAME
                        [--verbose]
                        [--mode=MODE]
@@ -177,7 +177,7 @@ Form 2 - Generating Submission Scripts
 
 .. code:: text
 
-   sbatch generate submit --name=NAME [--verbose]
+   ee generate submit --name=NAME [--verbose]
 
 This command uses the output of the `generate
 command <#command-1---generating-experiments>`__ and generates a shell
@@ -187,7 +187,7 @@ SLURM as a sequence of sbatch commands.
 -  ``--name=NAME`` - specifies the name used in the `generate
    command <#command-1---generating-experiments>`__. The generate
    command will inspect the ``<NAME>.json`` file and build the necessary
-   commands to run all permutations that the cloudmesh sbatch command
+   commands to run all permutations that the cloudmesh ee command
    generated.
 
 Note that this command only generates the script, and you must run the
@@ -199,11 +199,11 @@ run your jobs.
 This command requires a YAML file which is configured for the host and
 gpu. The YAML file also points to the desired slurm template.
 
-.. code:: python
+.. code:: yaml
 
    slurm_template: 'slurm_template.slurm'
 
-   sbatch_setup:
+   ee_setup:
      <hostname>-<gpu>:
        - card_name: "a100"
        - time: "05:00:00"
@@ -218,8 +218,8 @@ gpu. The YAML file also points to the desired slurm template.
 
 Example::
 
-   cms sbatch slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4  --noos --dir=example --experiment=\"epoch=[1-3] x=[1,4] y=[10,11]\"
-   sbatch slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4 --noos --dir=example --experiment="epoch=[1-3] x=[1,4] y=[10,11]"
+   cms ee slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4  --noos --dir=example --experiment=\"epoch=[1-3] x=[1,4] y=[10,11]\"
+   ee slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4 --noos --dir=example --experiment="epoch=[1-3] x=[1,4] y=[10,11]"
    epoch=1 x=1 y=10  sbatch example/slurm.sh
    epoch=1 x=1 y=11  sbatch example/slurm.sh
    epoch=1 x=4 y=10  sbatch example/slurm.sh
@@ -232,7 +232,7 @@ Example::
    epoch=3 x=1 y=11  sbatch example/slurm.sh
    epoch=3 x=4 y=10  sbatch example/slurm.sh
    epoch=3 x=4 y=11  sbatch example/slurm.sh
-   Timer: 0.0022s Load: 0.0013s sbatch slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4 --noos --dir=example --experiment="epoch=[1-3] x=[1,4] y=[10,11]"
+   Timer: 0.0022s Load: 0.0013s ee slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4 --noos --dir=example --experiment="epoch=[1-3] x=[1,4] y=[10,11]"
 
 
 

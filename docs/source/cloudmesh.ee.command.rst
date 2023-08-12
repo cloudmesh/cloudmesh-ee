@@ -1,13 +1,13 @@
-cloudmesh.sbatch.command package
+cloudmesh.ee.command package
 ================================
 
 Submodules
 ----------
 
-cloudmesh.sbatch.command.sbatch module
+cloudmesh.ee.command.ee module
 --------------------------------------
 
-.. automodule:: cloudmesh.sbatch.command.sbatch
+.. automodule:: cloudmesh.ee.command.ee
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,7 +15,7 @@ cloudmesh.sbatch.command.sbatch module
 Module contents
 ---------------
 
-.. automodule:: cloudmesh.sbatch.command
+.. automodule:: cloudmesh.ee.command
    :members:
    :undoc-members:
    :show-inheritance:
