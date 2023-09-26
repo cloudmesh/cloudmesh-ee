@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cloudmesh.ee.tools.parallel_executor &mdash; cloudmesh-ee 4.3.21 documentation</title>
+  <title>cloudmesh.ee.tools.parallel_executor &mdash; cloudmesh-ee 4.3.22 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
@@ -13,13 +13,13 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../../_static/clipboard.min.js"></script>
-        <script src="../../../../_static/copybutton.js"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=b13f8010"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -98,7 +98,9 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">docopt</span> <span class="kn">import</span> <span class="n">docopt</span>
 
-<div class="viewcode-block" id="ParallelExecutor"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor">[docs]</a><span class="k">class</span> <span class="nc">ParallelExecutor</span><span class="p">:</span>
+<div class="viewcode-block" id="ParallelExecutor">
+<a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor">[docs]</a>
+<span class="k">class</span> <span class="nc">ParallelExecutor</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
@@ -109,7 +111,9 @@
 
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ParallelExecutor initialized&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ParallelExecutor.load_yaml"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">load_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">):</span>
+<div class="viewcode-block" id="ParallelExecutor.load_yaml">
+<a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_yaml">[docs]</a>
+    <span class="k">def</span> <span class="nf">load_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading YAML file: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">yaml_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
@@ -118,7 +122,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span><span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span> <span class="n">step</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dependencies&#39;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">}</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;YAML file loaded successfully&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ParallelExecutor.load_json"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_json">[docs]</a>    <span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_path</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ParallelExecutor.load_json">
+<a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_json">[docs]</a>
+    <span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_path</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading JSON file: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json_path</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
@@ -127,7 +134,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span><span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span> <span class="n">step</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dependencies&#39;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">}</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;JSON file loaded successfully&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ParallelExecutor.execute_step"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_step">[docs]</a>    <span class="k">def</span> <span class="nf">execute_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ParallelExecutor.execute_step">
+<a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_step">[docs]</a>
+    <span class="k">def</span> <span class="nf">execute_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Executing step: </span><span class="si">%s</span><span class="s2"> on host: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">])</span>
         <span class="n">command</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;command&#39;</span><span class="p">]</span>
 
@@ -137,11 +147,17 @@
         <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Step &#39;</span><span class="si">%s</span><span class="s2">&#39; failed&quot;</span><span class="p">,</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="ParallelExecutor.execute_with_yaml"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_with_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">execute_with_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ParallelExecutor.execute_with_yaml">
+<a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_with_yaml">[docs]</a>
+    <span class="k">def</span> <span class="nf">execute_with_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaml_path</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">yaml_path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ParallelExecutor.execute"><a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ParallelExecutor.execute">
+<a class="viewcode-back" href="../../../../cloudmesh.ee.tools.html#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute">[docs]</a>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">()</span>
 
         <span class="n">description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;No description&#39;</span><span class="p">)</span>
@@ -157,7 +173,9 @@
             <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">future_to_step</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">as_completed</span><span class="p">(</span><span class="n">future_to_step</span><span class="p">):</span>
                 <span class="n">step</span> <span class="o">=</span> <span class="n">future_to_step</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Step &#39;</span><span class="si">%s</span><span class="s2">&#39; completed&quot;</span><span class="p">,</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span></div></div>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Step &#39;</span><span class="si">%s</span><span class="s2">&#39; completed&quot;</span><span class="p">,</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span></div>
+</div>
+
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
