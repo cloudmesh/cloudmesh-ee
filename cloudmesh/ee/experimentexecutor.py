@@ -666,7 +666,7 @@ class ExperimentExecutor:
 
             experiment["variables"]["slurm"] = {
                 "directive": rivanna.directive[host][key],
-                "ee": rivanna.create_slurm_directives(host=host, key=key).strip()
+                "sbatch": rivanna.create_slurm_directives(host=host, key=key).strip()
             }
             #
             # END GENERATE SLURM SBATCH
