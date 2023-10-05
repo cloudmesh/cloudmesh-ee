@@ -661,13 +661,27 @@ class ExperimentExecutor:
             # CREATE SLURM SBATCH PARAMETERS FORM A KEY based on experiment.card_name
             #
             host = experiment["variables"]["system"]["host"]
-            key = experiment["variables"]["experiment"]["card_name"]
-            rivanna = Rivanna(host=host)
 
-            experiment["variables"]["slurm"] = {
-                "directive": rivanna.directive[host][key],
-                "sbatch": rivanna.create_slurm_directives(host=host, key=key).strip()
-            }
+            if "cardname" in experiment["variables"]["experiment"]:
+                key = experiment["variables"]["experiment"]["card_name"]
+                rivanna = Rivanna(host=host)
+
+                experiment["variables"]["slurm"] = {
+                    "directive": rivanna.directive[host][key],
+                    "sbatch": rivanna.create_slurm_directives(host=host, key=key).strip()
+                }
+            elif experiment["variables"]["experiment"]["directive"]:
+                directive = experiment["variables"]["experiment"]["directive"]
+                rivanna = Rivanna(host=host)
+
+                experiment["variables"]["slurm"] = {
+                    "sbatch": rivanna.create_slurm_directives(host=host, key=directive).strip()
+                }
+                if "-" in directive:
+                    experiment["variables"]["experiment"]["card_name"] = directive.split("-")[0]
+                else:
+                    experiment["variables"]["experiment"]["card_name"] = directive
+
             #
             # END GENERATE SLURM SBATCH
             #
