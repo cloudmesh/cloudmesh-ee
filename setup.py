@@ -45,11 +45,11 @@ with open('README.md') as f:
 
 
 
-NAME = "cloudmesh-sbatch"
-DESCRIPTION = "A command called sbatch and foo for the cloudmesh shell"
+NAME = "cloudmesh-ee"
+DESCRIPTION = "Experiment executor for permutations and hyperparameters"
 AUTHOR = "Gregor von Laszewski"
 AUTHOR_EMAIL = "laszewski@gmail.com"
-URL = "https://github.com/cloudmesh/cloudmesh-sbatch"
+URL = "https://github.com/cloudmesh/cloudmesh-ee"
 
 
 setup(

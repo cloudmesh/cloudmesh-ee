@@ -9,8 +9,8 @@
 import sphinx_rtd_theme
 import os
 import sys
-import cloudmesh.sbatch
-from cloudmesh.sbatch.__version__ import version as cc_version
+import cloudmesh.ee
+from cloudmesh.ee.__version__ import version as cc_version
 
 rtd = True
 # rtd = False
@@ -25,7 +25,7 @@ numfig = True
 html_theme = "sphinx_rtd_theme"
 
 
-project = 'cloudmesh-sbatch'
+project = 'cloudmesh-ee'
 copyright = '2022, Gregor von Laszewski'
 author = 'Gregor von Laszewski'
 release = cc_version

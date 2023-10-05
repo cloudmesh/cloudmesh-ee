@@ -1,11 +1,11 @@
-Cloudmesh sbatch
+Cloudmesh ee
 ================
 
 .. autosummary::
    :toctree: generated
 
-   cloudmesh.sbatch
-   manual/sbatch
+   cloudmesh.ee
+   manual/ee
 
 .. rubric:: Modules
 

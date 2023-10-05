@@ -1,4 +1,4 @@
-name: cloudmesh-sbatch
+name: cloudmesh-ee
 dependencies:
   - cloudmesh-cmd5
   - cloudmesh-sys

@@ -4,7 +4,7 @@ Slurm on a single node computer
 Install
 -------
 
-This instruction targets the instalation of SLURM on a single node compute cluster running
+This instruction targets the installation of SLURM on a single node compute cluster running
 ubuntu 20.04.
 
 see
@@ -132,20 +132,20 @@ BUG
    JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
                     2    LocalQ gregors_    green PD       0:00      1 (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions)
 
-sbatch slurm manageement commands for localhost
+sbatch slurm management commands for localhost
 -----------------------------------------------
 
 start slurm deamons
 
 .. code:: bash
 
-   cms sbatch slurm start
+   cms ee slurm start
 
 stop surm deamons
 
 .. code:: bash
 
-   cms sbatch slurm stop
+   cms ee slurm stop
 
 BUG:
 

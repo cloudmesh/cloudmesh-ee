@@ -1,5 +1,5 @@
 # copy to build then invoke with
-# cms sbatch generate build/example.in/experiment.yaml \
+# cms ee generate build/example.in/experiment.yaml \
 #     --config={config} \
 #     --dir={build_dir} \
 #     --attributes=a=1,b=4 \

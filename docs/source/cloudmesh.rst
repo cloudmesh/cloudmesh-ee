@@ -7,7 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   cloudmesh.sbatch
+   cloudmesh.ee
 
 Module contents
 ---------------

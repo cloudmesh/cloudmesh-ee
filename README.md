@@ -1,4 +1,4 @@
-# Cloudmesh Sbatch
+# Cloudmesh ee
 
 A general purpose HPC Template and Experiment management system
 
@@ -25,17 +25,17 @@ number of parallel accessible resources. In some cases these
 restrictions are soo established that removing them is impractical and
 takes weks to implement on temporary basis.
 
-Cloudmesh Sbatch is a framework that wraps the SLURM batch processor
-into a templated framework such that experiments can be generated
-based on configuration files focusing on the livecycle of generating
-many permutations of experiments with standard tooling, so that you
-can focus more on modeling your experiments than how to orchestrate
-them with tools.  A number of batch scripts can be generated that than
-can be executed according to center policies.
+Cloudmesh Experiment Executor (ee) is a framework that wraps the SLURM 
+batch processor into a templated framework such that experiments can 
+be generated based on configuration files focusing on the livecycle 
+of generating many permutations of experiments with standard tooling, 
+so that you can focus more on modeling your experiments than how to 
+orchestrate them with tools.  A number of batch scripts can be 
+generated that than can be executed according to center policies.
 
 ## Dependencies
 
-When you install cloudmesh-sbatch, you will also be installing a
+When you install cloudmesh-ee, you will also be installing a
 minimum baseline of the `cms` command (as part of the Cloudmesh
 ecosystem).  For more details on Cloudmesh, see its documentation on
 [read the docs](https://cloudmesh.github.io/cloudmesh-manual/). However
@@ -46,18 +46,18 @@ need to initialize cloudmesh with the command
 $ cms help
 ```
 
-While SLURM is not needed to run the `cloudmesh sbatch` command, the
-generated output will not exectue unless your system has slurm installed
+While SLURM is not needed to run the `cloudmesh ee` command, the
+generated output will not execute unless your system has slurm installed
 and you are able to run jobs via the `slurm sbatch` command.
 
 ## Documentation
 
-### Running Cloudmesh SBatch
+### Running Cloudmesh ee
 
-The `cloudmesh sbatch` command takes one of two forms of execution.  It is started with 
+The `cloudmesh ee` command takes one of two forms of execution.  It is started with 
 
 ```bash
-$ cms sbatch <command> <parameters>
+$ cms ee <command> <parameters>
 ```
 
 Where the command invokes a partiuclar action and parameters include a
@@ -68,7 +68,7 @@ functions as expected and as intended.
 In general, configuration arguments that appear in multiple locations are
 prioritized in the following order (highest priority first)
 
-1. CLI Arguments with `cms sbatch`
+1. CLI Arguments with `cms ee`
 2. Configuration Files
 3. Preset values
 
@@ -79,8 +79,8 @@ configuration file, or via CLI arguments.  You can issue the command using
 either of the below forms:
 
 ```text
-cms sbatch generate SOURCE --name=NAME [--verbose] [--mode=MODE] [--config=CONFIG] [--attributes=PARAMS] [--out=DESTINATION] [--dryrun] [--noos] [--nocm] [--dir=DIR] [--experiment=EXPERIMENT]
-cms sbatch generate --setup=FILE [SOURCE] [--verbose] [--mode=MODE]  [--config=CONFIG] [--attributes=PARAMS] [--out=DESTINATION] [--dryrun] [--noos] [--nocm] [--dir=DIR] [--experiment=EXPERIMENT] [--name=NAME]
+cms ee generate SOURCE --name=NAME [--verbose] [--mode=MODE] [--config=CONFIG] [--attributes=PARAMS] [--out=DESTINATION] [--dryrun] [--noos] [--nocm] [--dir=DIR] [--experiment=EXPERIMENT]
+cms ee generate --setup=FILE [SOURCE] [--verbose] [--mode=MODE]  [--config=CONFIG] [--attributes=PARAMS] [--out=DESTINATION] [--dryrun] [--noos] [--nocm] [--dir=DIR] [--experiment=EXPERIMENT] [--name=NAME]
 ```
 
 If you have prepared a configuration file that conforms to the schema
@@ -110,7 +110,7 @@ form which overrides the default values.
 ### Form 2 - Generating Submission Scripts
 
 ```text
-sbatch generate submit --name=NAME [--verbose]
+ee generate submit --name=NAME [--verbose]
 ```
 
 This command uses the output of the
@@ -121,7 +121,7 @@ outputs to SLURM as a sequence of sbatch commands.
 * `--name=NAME` - specifies the name used in the
   [generate command](#command-1---generating-experiments).
   The generate command will inspect the `<NAME>.json` file and build the
-  necessary commands to run all permutations that the cloudmesh sbatch
+  necessary commands to run all permutations that the cloudmesh ee
   command generated.
 
 Note that this command only generates the script, and you must run the
@@ -134,10 +134,10 @@ run your jobs.
 This command requires a YAML file which is configured for the host and gpu.
 The YAML file also points to the desired slurm template.
 
-```python
+```yaml
 slurm_template: 'slurm_template.slurm'
 
-sbatch_setup:
+ee_setup:
   <hostname>-<gpu>:
     - card_name: "a100"
     - time: "05:00:00"
@@ -150,14 +150,13 @@ sbatch_setup:
     - num_cpus: 6
     - num_gpus: 1
 
-
 ```
 
 example:
 
 ```
-cms sbatch slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4  --noos --dir=example --experiment=\"epoch=[1-3] x=[1,4] y=[10,11]\"
-sbatch slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4 --noos --dir=example --experiment="epoch=[1-3] x=[1,4] y=[10,11]"
+cms ee slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4  --noos --dir=example --experiment=\"epoch=[1-3] x=[1,4] y=[10,11]\"
+ee slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4 --noos --dir=example --experiment="epoch=[1-3] x=[1,4] y=[10,11]"
 # ERROR: Importing python not yet implemented
 epoch=1 x=1 y=10  sbatch example/slurm.sh
 epoch=1 x=1 y=11  sbatch example/slurm.sh
@@ -171,7 +170,7 @@ epoch=3 x=1 y=10  sbatch example/slurm.sh
 epoch=3 x=1 y=11  sbatch example/slurm.sh
 epoch=3 x=4 y=10  sbatch example/slurm.sh
 epoch=3 x=4 y=11  sbatch example/slurm.sh
-Timer: 0.0022s Load: 0.0013s sbatch slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4 --noos --dir=example --experiment="epoch=[1-3] x=[1,4] y=[10,11]"
+Timer: 0.0022s Load: 0.0013s ee slurm.in.sh --config=a.py,b.json,c.yaml --attributes=a=1,b=4 --noos --dir=example --experiment="epoch=[1-3] x=[1,4] y=[10,11]"
 ```
 
 ## Slurm on a single computer ubuntu 20.04
@@ -301,18 +300,18 @@ JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
 
 ```
 
-### sbatch slurm manageement commands for localhost
+### sbatch slurm management commands for localhost
 
-start slurm deamons
+start slurm daemons
 
 ```bash
-cms sbatch slurm start
+cms ee slurm start
 ```
 
 stop surm deamons
 
 ```bash
-cms sbatch slurm stop
+cms ee slurm stop
 ```
 
 BUG:

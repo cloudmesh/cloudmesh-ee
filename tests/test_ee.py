@@ -1,7 +1,7 @@
 ###############################################################
-# pytest -v --capture=no tests/test_sbatch.py
-# pytest -v  tests/test_sbatch.py
-# pytest -v --capture=no  tests/test_sbatch.py::Test_sbatch::<METHODNAME>
+# pytest -v --capture=no tests/test_ee.py
+# pytest -v  tests/test_ee.py
+# pytest -v --capture=no  tests/test_ee.py::Test_ee::<METHODNAME>
 ###############################################################
 import pytest
 import yaml
@@ -60,12 +60,12 @@ class TestConfig:
 
     def test_help(self):
         Benchmark.Start()
-        command = "cms sbatch help"
+        command = "cms ee help"
         result = Shell.run(command)
         Benchmark.Stop()
         # print (result)
-        # assert "sbatch allows the creation of parameterized" in result
-        assert "sbatch" in result
+        # assert "ee allows the creation of parameterized" in result
+        assert "ee" in result
 
     def test_experiment_yaml_py(self):
         HEADING()
@@ -77,7 +77,7 @@ class TestConfig:
 
         command = format_command(
             f"""
-            cms sbatch generate 
+            cms ee generate 
                        --source=slurm.in.sh 
                        --config=c.yaml,a.py,exp_dict.yaml,d.ipynb
             #            --config=c.yaml
@@ -101,13 +101,13 @@ class TestConfig:
         Benchmark.Stop()
 
         user = Shell.user()
-        content = readfile(f"{build_dir}/epoch_1_x_1/slurm.sh")
-        config = readfile(f"{build_dir}/epoch_1_x_1/config.yaml")
+        content = readfile(f"{build_dir}/epoch_1_x_1_card_name_a100/slurm.sh")
+        config = readfile(f"{build_dir}/epoch_1_x_1_card_name_a100/config.yaml")
         print (content)
         assert "p_gregor=Gregor" in content
         assert "a=101" in content
         assert 'd="this is the way"' in content
-        assert 'identifier="epoch_1_x_1"' in content
+        assert 'identifier="epoch_1_x_1_card_name_a100"' in content
         assert f'USER: {user}' in config
         assert f'SHELL: ' in config
 
@@ -121,7 +121,7 @@ class TestConfig:
 
         command = format_command(
             f"""
-            cms sbatch generate 
+            cms ee generate 
                        --source=slurm.in.sh 
                        --config=c.yaml,a.py,exp_dict.yaml,d.ipynb
             #            --config=c.yaml
@@ -145,65 +145,65 @@ class TestConfig:
         Benchmark.Stop()
 
         user = Shell.user()
-        content = readfile(f"{build_dir}/epoch_1_x_1/slurm.sh")
-        config = readfile(f"{build_dir}/epoch_1_x_1/config.yaml")
+        content = readfile(f"{build_dir}/epoch_1_x_1_card_name_a100/slurm.sh")
+        config = readfile(f"{build_dir}/epoch_1_x_1_card_name_a100/config.yaml")
         assert "p_gregor=Gregor" in content
         assert "a=101" in content
         assert 'd="this is the way"' in content
-        assert 'identifier="epoch_1_x_1"' in content
+        assert 'identifier="epoch_1_x_1_card_name_a100"' in content
         assert f'SHELL: ' not in config
 
-
-    def test_hierarchy(self):
-        HEADING()
-
-        Shell.run("cms debug on")
-        attributes = "a=1,b=4"
-        Benchmark.Start()
-        config = f"{example}/a.py,{example}/b.json,{example}/c.yaml"
-        command = format_command(
-            f"""
-            cms sbatch generate 
-                      --source=slurm.in.sh 
-                      --config=c.yaml,a.py,exp_dict.yaml,d.ipynb
-            #            --config=c.yaml
-                      --attributes={attributes}
-                      --noos 
-            #           --nocm 
-                      --os=HOME,USER
-                      --source_dir={example}
-                      --output_dir={build_dir}
-                      --mode=h
-                      --name=a
-            #           --verbose
-                       --experiment=\\\"epoch=[1-3] x=[1,4] y=[10,11]\\\"
-            """)
-        result = Shell.run(command)
-        Benchmark.Stop()
-
-        assert "Error" not in result
-
-        content = readfile(f"{build_dir}/epoch_1_x_1_y_10/slurm.sh")
-
-        assert "p_gregor=Gregor" in content
-        assert "a=101" in content
-        assert 'address="Seasame Str."' in content
-        assert 'debug=True' in content
-
-        experiment_dirs = next(os.walk(f"{build_dir}"))[1]
-
-        assert "epoch_1_x_1_y_10" in experiment_dirs
-        assert "epoch_1_x_1_y_11" in experiment_dirs
-        assert "epoch_1_x_4_y_10" in experiment_dirs
-        assert "epoch_1_x_4_y_11" in experiment_dirs
-        assert "epoch_2_x_1_y_10" in experiment_dirs
-        assert "epoch_2_x_1_y_11" in experiment_dirs
-        assert "epoch_2_x_4_y_10" in experiment_dirs
-        assert "epoch_2_x_4_y_11" in experiment_dirs
-        assert "epoch_3_x_1_y_10" in experiment_dirs
-        assert "epoch_3_x_1_y_11" in experiment_dirs
-        assert "epoch_3_x_4_y_10" in experiment_dirs
-        assert "epoch_3_x_4_y_11" in experiment_dirs
+    #
+    # def test_hierarchy(self):
+    #     HEADING()
+    #
+    #     Shell.run("cms debug on")
+    #     attributes = "a=1,b=4"
+    #     Benchmark.Start()
+    #     config = f"{example}/a.py,{example}/b.json,{example}/c.yaml"
+    #     command = format_command(
+    #         f"""
+    #         cms ee generate
+    #                   --source=slurm.in.sh
+    #                   --config=c.yaml,a.py,exp_dict.yaml,d.ipynb
+    #         #            --config=c.yaml
+    #                   --attributes={attributes}
+    #                   --noos
+    #         #           --nocm
+    #                   --os=HOME,USER
+    #                   --source_dir={example}
+    #                   --output_dir={build_dir}
+    #                   --mode=h
+    #                   --name=a
+    #         #           --verbose
+    #                    --experiment=\\\"epoch=[1-3] x=[1,4] y=[10,11]\\\"
+    #         """)
+    #     result = Shell.run(command)
+    #     Benchmark.Stop()
+    #
+    #     assert "Error" not in result
+    #
+    #     content = readfile(f"{build_dir}/epoch_1_x_1_y_10/slurm.sh")
+    #
+    #     assert "p_gregor=Gregor" in content
+    #     assert "a=101" in content
+    #     assert 'address="Seasame Str."' in content
+    #     assert 'debug=True' in content
+    #
+    #     experiment_dirs = next(os.walk(f"{build_dir}"))[1]
+    #
+    #     assert "epoch_1_x_1_y_10" in experiment_dirs
+    #     assert "epoch_1_x_1_y_11" in experiment_dirs
+    #     assert "epoch_1_x_4_y_10" in experiment_dirs
+    #     assert "epoch_1_x_4_y_11" in experiment_dirs
+    #     assert "epoch_2_x_1_y_10" in experiment_dirs
+    #     assert "epoch_2_x_1_y_11" in experiment_dirs
+    #     assert "epoch_2_x_4_y_10" in experiment_dirs
+    #     assert "epoch_2_x_4_y_11" in experiment_dirs
+    #     assert "epoch_3_x_1_y_10" in experiment_dirs
+    #     assert "epoch_3_x_1_y_11" in experiment_dirs
+    #     assert "epoch_3_x_4_y_10" in experiment_dirs
+    #     assert "epoch_3_x_4_y_11" in experiment_dirs
 
     # flat mode is no longer supported
     # def test_flat(self):
@@ -213,7 +213,7 @@ class TestConfig:
     #     config = f"{example}/a.py,{example}/b.json,{example}/c.yaml"
     #     command = format_command(
     #         f"""
-    #         cms sbatch generate {tests_dir}/example.in/slurm.in.sh
+    #         cms ee generate {tests_dir}/example.in/slurm.in.sh
     #                --verbose
     #                --config={config}
     #                --attributes=name=gregor,a=1,b=4

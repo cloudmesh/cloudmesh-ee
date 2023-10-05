@@ -1,4 +1,4 @@
-package=sbatch
+package=ee
 UNAME=$(shell uname)
 VERSION=`head -1 VERSION`
 

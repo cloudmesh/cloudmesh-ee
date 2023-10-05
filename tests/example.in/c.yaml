@@ -13,7 +13,7 @@ system:
   reservation: ""
   partition: "gpu"
 
-sbatch:
+ee:
   mode: h
   dir: project
 address:

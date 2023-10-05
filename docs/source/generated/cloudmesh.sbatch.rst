@@ -1,7 +1,7 @@
-﻿cloudmesh.sbatch
-================
+﻿cloudmesh.ee
+============
 
-.. automodule:: cloudmesh.sbatch
+.. automodule:: cloudmesh.ee
 
    
    

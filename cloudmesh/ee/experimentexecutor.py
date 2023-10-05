@@ -611,7 +611,7 @@ class ExperimentExecutor:
             name = f"{name}.json"
 
         if job_type == 'slurm':
-            cmd = 'ee'
+            cmd = 'sbatch'
         elif job_type == 'lsf':
             cmd = 'bsub'
         else:

@@ -6,4 +6,4 @@ user={USERNAME}
 home={HOME}
 p_gregor={py_data.name}
 d="{d}"
-identifier="{sbatch.identifier}"
+identifier="{ee.identifier}"
