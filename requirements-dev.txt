@@ -1,3 +1,4 @@
+setuptools
 -r requirements.txt
 wheel
 pytest
