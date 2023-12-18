@@ -41,8 +41,7 @@ class Slurm:
 
     @staticmethod
     def start():
-        """
-        Starts the SLurm service oon your local machine.
+        """Starts the Slurm service oon your local machine.
 
         Returns:
             On stdout prints the action information
@@ -59,8 +58,7 @@ class Slurm:
 
     @staticmethod
     def stop():
-        """
-        Stops the SLurm service oon your local machine.
+        """Stops the SLurm service oon your local machine.
 
         Returns:
             On stdout prints the action information
@@ -70,8 +68,7 @@ class Slurm:
 
     @staticmethod
     def status():
-        """
-        Shows the status of the SLurm service oon your local machine.
+        """Shows the status of the SLurm service oon your local machine.
 
         Returns:
             On stdout prints the action information

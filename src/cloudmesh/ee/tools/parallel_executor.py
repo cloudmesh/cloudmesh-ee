@@ -1,5 +1,4 @@
-"""
-Parallel Executor with Dependencies
+"""Parallel Executor with Dependencies
 
 Usage:
   parallel_executor.py <yaml_file>
@@ -17,7 +16,40 @@ import logging
 from docopt import docopt
 
 class ParallelExecutor:
+    """
+    A class for executing steps in parallel with dependencies.
+
+    Usage:
+        executor = ParallelExecutor()
+        executor.execute_with_yaml("example.yaml")
+        executor.execute()
+
+    Attributes:
+        info (dict): Information about the execution.
+        steps (list): List of steps to be executed.
+        dependencies (dict): Dependencies between steps.
+
+    Methods:
+        load_yaml(yaml_path): Load execution information from a YAML file.
+        load_json(json_path): Load execution information from a JSON file.
+        execute_step(step): Execute a single step.
+        execute_with_yaml(yaml_path): Load and execute steps from a YAML file.
+        execute(): Execute all loaded steps.
+
+    Example:
+        executor = ParallelExecutor()
+        executor.execute_with_yaml("example.yaml")
+        executor.execute()
+    """
     def __init__(self):
+        """
+        Initialize the ParallelExecutor.
+
+        Sets up logging and initializes attributes.
+
+        Example:
+            executor = ParallelExecutor()
+        """
         self.info = {}
         self.steps = []
         self.dependencies = {}
@@ -28,6 +60,15 @@ class ParallelExecutor:
         logging.info("ParallelExecutor initialized")
 
     def load_yaml(self, yaml_path):
+        """
+        Load execution information from a YAML file.
+
+        Args:
+            yaml_path (str): Path to the YAML file.
+
+        Example:
+            executor.load_yaml("example.yaml")
+        """
         logging.info("Loading YAML file: %s", yaml_path)
         with open(yaml_path, 'r') as file:
             data = yaml.safe_load(file)
@@ -37,6 +78,15 @@ class ParallelExecutor:
         logging.info("YAML file loaded successfully")
 
     def load_json(self, json_path):
+        """
+        Load execution information from a JSON file.
+
+        Args:
+            json_path (str): Path to the JSON file.
+
+        Example:
+            executor.load_json("example.json")
+        """
         logging.info("Loading JSON file: %s", json_path)
         with open(json_path, 'r') as file:
             data = json.load(file)
@@ -46,6 +96,15 @@ class ParallelExecutor:
         logging.info("JSON file loaded successfully")
 
     def execute_step(self, step):
+        """
+        Execute a single step.
+
+        Args:
+            step (dict): Step information.
+
+        Example:
+            executor.execute_step({"name": "step1", "host": "localhost", "command": "echo 'Hello, World!'"})
+        """
         logging.info("Executing step: %s on host: %s", step['name'], step['host'])
         command = step['command']
 
@@ -56,10 +115,25 @@ class ParallelExecutor:
             logging.error("Step '%s' failed", step['name'])
 
     def execute_with_yaml(self, yaml_path):
+        """
+        Load and execute steps from a YAML file.
+
+        Args:
+            yaml_path (str): Path to the YAML file.
+
+        Example:
+            executor.execute_with_yaml("example.yaml")
+        """
         self.load_yaml(yaml_path)
         self.execute()
 
     def execute(self):
+        """
+        Execute all loaded steps.
+
+        Example:
+            executor.execute()
+        """
         self.load_yaml()
 
         description = self.info.get('description', 'No description')

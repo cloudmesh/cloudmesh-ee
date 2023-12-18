@@ -33,11 +33,11 @@ class ExperimentExecutor:
     #     return None
 
     def __init__(self, verbose=False):
-        """
-        Initialize the ExperimentExecutor Object
+        """Initialize the ExperimentExecutor Object
 
-        :param verbose: If true prints additional infromation when ExperimentExecutor methods are called
-        :type verbose: bool
+        Args:
+            verbose (bool): If true prints additional infromation when
+                ExperimentExecutor methods are called
         """
         self.flat = FlatDict({}, sep=".")
         self.data = dict()
@@ -58,13 +58,13 @@ class ExperimentExecutor:
         self.copycode = None
 
     def info(self, verbose=None):
-        """
-        Prints information about the ExperimentExecutor object for debugging purposes
+        """Prints information about the ExperimentExecutor object for debugging purposes
 
-        :param verbose:  if True prints even more information
-        :type verbose: bool
-        :return: None
-        :rtype: None
+        Args:
+            verbose (bool): if True prints even more information
+
+        Returns:
+            None: None
         """
         verbose = verbose or self.verbose
 
@@ -143,15 +143,14 @@ class ExperimentExecutor:
 
     @staticmethod
     def update_with_directory(directory, filename):
-        """
-        prefix with the directory if the filename is not starting with . / ~
+        """prefix with the directory if the filename is not starting with . / ~
 
-        :param directory: the string value of the directory
-        :type directory: str
-        :param filename: the filename
-        :type filename: str
-        :return: directory/filename
-        :rtype: str
+        Args:
+            directory (str): the string value of the directory
+            filename (str): the filename
+
+        Returns:
+            str: directory/filename
         """
         if directory is None:
             return filename
@@ -161,13 +160,13 @@ class ExperimentExecutor:
             return filename
 
     def get_data(self, flat=False):
-        """
-        converts the data from the yaml file with the flatdict
+        """converts the data from the yaml file with the flatdict
 
-        :param flat: if set to true uses flatdict
-        :type flat: boolen
-        :return: result of flatdict without the seperator
-        :rtype: dict
+        Args:
+            flat (boolen): if set to true uses flatdict
+
+        Returns:
+            dict: result of flatdict without the seperator
         """
         result = self.data
 
@@ -179,8 +178,7 @@ class ExperimentExecutor:
         return result
 
     def spec_replace(self, spec):
-        """
-        given a spec in yaml format, replaces all values in the yaml file that
+        """given a spec in yaml format, replaces all values in the yaml file that
         are of the form "{a.b}" with the value of
 
         a:
@@ -188,10 +186,11 @@ class ExperimentExecutor:
 
         if it is defined in the yaml file
 
-        :param spec: yaml string
-        :type spec: str
-        :return: replaced yaml file
-        :rtype: str
+        Args:
+            spec (str): yaml string
+
+        Returns:
+            str: replaced yaml file
         """
 
         banner("SPECIFICATION")
@@ -236,13 +235,13 @@ class ExperimentExecutor:
         return spec
 
     def update_from_os(self, variables):
-        """
-        LOads all variables from os.environ into self.data with os.name
+        """LOads all variables from os.environ into self.data with os.name
 
-        :param variables: the name of the variables such as "HOME"
-        :type variables:  [str]
-        :return: self.data with all variaples added with os.name: value
-        :rtype: dict
+        Args:
+            variables ([str]): the name of the variables such as "HOME"
+
+        Returns:
+            dict: self.data with all variaples added with os.name: value
         """
         if variables is not None:
             if os not in self.data:
@@ -252,40 +251,41 @@ class ExperimentExecutor:
         return self.data
 
     def load_source_template(self, script):
-        """
-        Registers and reads the template script in for processing
+        """Registers and reads the template script in for processing
 
         This method must be run at least once prior to generating the batch script output.
 
-        :param script: A string that is the path to the template script.
-        :type script: str
-        :return: The text of the template file unaltered.
-        :rtype: str
+        Args:
+            script (str): A string that is the path to the template
+                script.
+
+        Returns:
+            str: The text of the template file unaltered.
         """
         self.template_path = script
         self.template_content = readfile(script)
         return self.template_content
 
     def update_from_dict(self, d):
-        """
-        Add a dict to self. data
+        """Add a dict to self. data
 
-        :param d: dictionary
-        :type d: dict
-        :return: self.data with updated dict
-        :rtype: dict
+        Args:
+            d (dict): dictionary
+
+        Returns:
+            dict: self.data with updated dict
         """
         self.data.update(d)
         return self.data
 
     def update_from_attributes(self, attributes: str):
-        """
-        attributes are of the form "a=1,b=3"
+        """attributes are of the form "a=1,b=3"
 
-        :param attributes: A string to expand into key-value pairs
-        :type attributes:
-        :return: self.data with updated dict
-        :rtype: dict
+        Args:
+            attributes: A string to expand into key-value pairs
+
+        Returns:
+            dict: self.data with updated dict
         """
         flatdict = Parameter.arguments_to_dict(attributes)
 
@@ -297,23 +297,23 @@ class ExperimentExecutor:
         return self.data
 
     def update_from_os_environ(self):
-        """
-        Updates the config file output to include OS environment variables
+        """Updates the config file output to include OS environment variables
 
-        :return: The current value of the data configuration variable
-        :rtype: dict
+        Returns:
+            dict: The current value of the data configuration variable
         """
         self.update_from_dict(dict(os.environ))
         return self.data
 
     def update_from_cm_variables(self, load=True):
-        """
-        Adds Cloudmesh variables to the class's data parameter as a flat dict.
+        """Adds Cloudmesh variables to the class's data parameter as a flat dict.
 
-        :param load: Toggles execution; if false, method does nothing.
-        :type load: bool
-        :return: self.data with updated cloudmesh variables
-        :rtype: dict
+        Args:
+            load (bool): Toggles execution; if false, method does
+                nothing.
+
+        Returns:
+            dict: self.data with updated cloudmesh variables
         """
         if load:
             variables = Variables()
@@ -326,22 +326,24 @@ class ExperimentExecutor:
     @staticmethod
     def _suffix(filename):
         """
+        Args:
+            filename (str): Returns the file suffix of a filename
 
-        :param filename: Returns the file suffix of a filename
-        :type filename: str
-        :return: the suffix of the filename
-        :rtype: str
+        Returns:
+            str: the suffix of the filename
         """
         return pathlib.Path(filename).suffix
 
     def update_from_file(self, filename):
-        """
-        Updates the configuration self.data with the data within the passed file.
+        """Updates the configuration self.data with the data within the passed file.
 
-        :param filename: The path to the configuration file (yaml, json, py, ipynb)
-        :type filename: str
-        :return: self.data with updated cloudmesh variables from the specified file
-        :rtype: dict
+        Args:
+            filename (str): The path to the configuration file (yaml,
+                json, py, ipynb)
+
+        Returns:
+            dict: self.data with updated cloudmesh variables from the
+            specified file
         """
         if self.verbose:
             print(f"Reading variables from {filename}")
@@ -409,17 +411,18 @@ class ExperimentExecutor:
         return self.data
 
     def generate(self, script=None, variables=None, fences=("{", "}")):
-        """
-        Expands the script template given the passed configuration.
+        """Expands the script template given the passed configuration.
 
-        :param script: The string contents of the script file.
-        :type script: str
-        :param variables: the variables to be replaced, if ommitted uses the internal variables found
-        :type variables: dict
-        :param fences: A 2 position tuple, that encloses template variables (start and end).
-        :type fences: (str,str)
-        :return: The script that has expanded its values based on `data`.
-        :rtype: str
+        Args:
+            script (str): The string contents of the script file.
+            variables (dict): the variables to be replaced, if ommitted
+                uses the internal variables found
+            fences ((str,str)): A 2 position tuple, that encloses
+                template variables (start and end).
+
+        Returns:
+            str: The script that has expanded its values based on
+            `data`.
         """
 
         replaced = {}
@@ -443,13 +446,14 @@ class ExperimentExecutor:
 
     @staticmethod
     def permutation_generator(exp_dict):
-        """
-        Creates a cartisian product of a {key: list, ...} object.
+        """Creates a cartisian product of a {key: list, ...} object.
 
-        :param exp_dict: The dictionary to process
-        :type exp_dict: dict
-        :return: A list of dictionaries containing the resulting cartisian product.
-        :rtype: list
+        Args:
+            exp_dict (dict): The dictionary to process
+
+        Returns:
+            list: A list of dictionaries containing the resulting
+            cartisian product.
 
         For example
             my_dict = {"key1": ["value1", "value2"], "key2": ["value3", "value4"]}
@@ -464,13 +468,14 @@ class ExperimentExecutor:
         return [dict(zip(keys, value)) for value in itertools.product(*values)]
 
     def generate_experiment_permutations(self, variable_str):
-        """
-        Generates experiment permutations based on the passed string and appends it to the current instance.
+        """Generates experiment permutations based on the passed string and appends it to the current instance.
 
-        :param variable_str: A Parameter.expand string (such as epoch=[1-3] x=[1,4] y=[10,11])
-        :type variable_str: str
-        :return: list with permutations over the experiment variables
-        :rtype: list
+        Args:
+            variable_str (str): A Parameter.expand string (such as
+                epoch=[1-3] x=[1,4] y=[10,11])
+
+        Returns:
+            list: list with permutations over the experiment variables
         """
         experiments = OrderedDict()
         entries = variable_str.split(' ')
@@ -483,13 +488,13 @@ class ExperimentExecutor:
 
     @staticmethod
     def _generate_bootstrapping(permutation):
-        """
-        creates an identifier, a list of assignments, ad values.
+        """creates an identifier, a list of assignments, ad values.
 
-        :param permutation: the permutation list
-        :type permutation: list
-        :return: identifier, assignments, values
-        :rtype: str, list, list
+        Args:
+            permutation (list): the permutation list
+
+        Returns:
+            str, list, list: identifier, assignments, values
         """
         values = list()
         for attribute, value in permutation.items():
@@ -503,11 +508,10 @@ class ExperimentExecutor:
         return identifier, assignments, values
 
     def _generate_hierarchical_config(self):
-        """
-        Creates a hierarchical directory with configuration yaml files, and shell script
+        """Creates a hierarchical directory with configuration yaml files, and shell script
 
-        :return: directory with configuration and yaml files
-        :rtype: dict
+        Returns:
+            dict: directory with configuration and yaml files
         """
         """Runs process to build out all templates in a hierarchical-style
 
@@ -560,15 +564,16 @@ class ExperimentExecutor:
         return configuration
 
     def generate_experiment_batch_scripts(self, out_mode=None, replace_all=True):
-        """
-        Utility method to genrerate either hierarchical or flat outputs; or debug.
+        """Utility method to genrerate either hierarchical or flat outputs; or debug.
 
         NOte the falt mode is no longer supported
 
-        :param out_mode: The mode of operation.  One of: "debug", "flat", "hierarchical"
-        :type out_mode: string
-        :return: generates the batch scripts
-        :rtype: None
+        Args:
+            out_mode (string): The mode of operation.  One of: "debug",
+                "flat", "hierarchical"
+
+        Returns:
+            None: generates the batch scripts
         """
         mode = self.execution_mode if out_mode is None else out_mode.lower()
         if mode.startswith("d"):
@@ -595,16 +600,16 @@ class ExperimentExecutor:
             self.generate_setup_from_configuration(configuration, replace_all)
 
     def generate_submit(self, name=None, job_type='slurm'):
-        """
-        Generates a list of commands based on the permutations for submission
+        """Generates a list of commands based on the permutations for submission
 
-        :param name: Name of the experiments
-        :type name: str
-        :param job_type: name of the job type used at submission such as
-                         ee, slurm, jsrun, mpirun, sh, bash
-        :type job_type: str
-        :return: prepars the internal data for the experiments, if set to verbose, prints them
-        :rtype: None
+        Args:
+            name (str): Name of the experiments
+            job_type (str): name of the job type used at submission such
+                as ee, slurm, jsrun, mpirun, sh, bash
+
+        Returns:
+            None: prepars the internal data for the experiments, if set
+            to verbose, prints them
         """
 
         if ".json" not in name:
@@ -638,12 +643,13 @@ class ExperimentExecutor:
             print(f"{parameters} cd {directory} && {cmd} {script}")
 
     def generate_setup_from_configuration(self, configuration, replace_all=True):
-        """
-        generates a setup directory from the configuration parameters
-        :param configuration: the configuration dict
-        :type configuration: dict
-        :return:
-        :rtype:
+        """generates a setup directory from the configuration parameters
+
+        Args:
+            configuration (dict): the configuration dict
+
+        Returns:
+
         """
         for identifier in configuration:
             experiment = configuration[identifier]
@@ -717,21 +723,21 @@ class ExperimentExecutor:
                 raise ValueError
     @property
     def now(self):
-        """
-        The time of now in the format "%Y-m-%d"
-        :return: "%Y-m-%d"
-        :rtype: str
+        """The time of now in the format "%Y-m-%d"
+
+        Returns:
+            str: "%Y-m-%d"
         """
         return datetime.now().strftime("%Y-m-%d")
 
     def save_experiment_configuration(self, name=None):
-        """
-        Saves the experiment configuration in a json file
+        """Saves the experiment configuration in a json file
 
-        :param name: name of the configuration file
-        :type name: str
-        :return: writes into the file with given name the json content
-        :rtype: None
+        Args:
+            name (str): name of the configuration file
+
+        Returns:
+            None: writes into the file with given name the json content
         """
         if name is not None:
             content = json.dumps(self.configuration_parameters, indent=2)
