@@ -1,0 +1,3 @@
+bumpversion:
+- src/cloudmesh/ee/__version__.py
+- VERSION
