@@ -1,6 +1,7 @@
 config: rivanna-config.yaml
 name: earthquake-project
 experiments:
+  directive: "a100-dgx"
   card_name: "a100,p100,v100,k80,rtx2080,rtx3080"
   gpu_count: 1
   cpu_num: 6

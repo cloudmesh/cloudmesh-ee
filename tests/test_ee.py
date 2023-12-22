@@ -59,6 +59,7 @@ def format_command(content):
 class TestConfig:
 
     def test_help(self):
+        HEADING()
         Benchmark.Start()
         command = "cms ee help"
         result = Shell.run(command)
