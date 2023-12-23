@@ -38,6 +38,7 @@ class EeCommand(PluginCommand):
                                 [--experiment=EXPERIMENT]
                                 [--flat]
                                 [--copycode=CODE]
+                ee list [DIRECTORY]
                 ee slurm start
                 ee slurm stop
                 ee slurm info
@@ -199,6 +200,14 @@ class EeCommand(PluginCommand):
 
             return ""
 
+        elif arguments.list:
+                
+                directory = arguments.DIRECTORY or "project"
+    
+                ee = ExperimentExecutor()
+                ee.list(directory)
+    
+                return ""   
         elif arguments.generate:
 
             ee = ExperimentExecutor()

@@ -7,18 +7,22 @@ import uuid
 from collections import OrderedDict
 from datetime import datetime
 from pprint import pprint
-
+from tqdm import tqdm
+import shutil
 import yaml
 from nbconvert.exporters import PythonExporter
+import humanize
 
+from cloudmesh.common.util import readfile
 from cloudmesh.rivanna.rivanna import Rivanna
 from cloudmesh.common.FlatDict import FlatDict
 from cloudmesh.common.Printer import Printer
 from cloudmesh.common.Shell import Shell
 from cloudmesh.common.console import Console
 from cloudmesh.common.parameter import Parameter
-from cloudmesh.common.util import banner, readfile, writefile
+from cloudmesh.common.util import banner, writefile
 from cloudmesh.common.variables import Variables
+from cloudmesh.common.dotdict import dotdict
 
 PathLike = typing.Union[str, pathlib.Path]
 DictOrList = typing.Union[dict, list]
@@ -56,6 +60,43 @@ class ExperimentExecutor:
         self.script_out = None
         # self.gpu = None
         self.copycode = None
+
+  
+
+    def list(self, directory="project", config="config.yaml", debug=False, verbose=True):
+        """Lists all experiments
+
+        Returns:
+            None: prints the experiments
+        """
+
+        banner(f"List Experiments in {directory}/*/{config}")
+        experiments = []
+
+        if verbose:
+            num_entries = sum(1 for entry in os.scandir(directory) if entry.is_dir())
+            progress_bar = tqdm(total=num_entries, desc="Processing", ncols=70)  # Set ncols to 70
+
+        for entry in os.scandir(directory):
+            if entry.is_dir():
+                config_dir = f"{directory}/{entry.name}"
+                config_file = f"{config_dir}/{config}"
+                if debug:
+                    print(config_file)
+                content = yaml.safe_load(readfile(config_file))
+                content = content["experiment"]
+                # space = Shell.calculate_disk_space(config_dir)
+                content["space"] = Shell.calculate_disk_space(config_dir)
+                content["space"] = humanize.naturalsize(content["space"])
+
+                experiments.append(content)
+            if verbose:
+                progress_bar.update(1)
+        if verbose:
+            progress_bar.close()
+
+        print(Printer.write(experiments))
+    import shutil
 
     def info(self, verbose=None):
         """Prints information about the ExperimentExecutor object for debugging purposes
