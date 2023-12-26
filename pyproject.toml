@@ -68,5 +68,5 @@ Issues = "https://github.com/cloudmesh/cloudmesh-ee/issues"
 Changelog = "https://github.com/cloudmesh/cloudmesh-ee/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
-where = ["src/"]
+where = ["src"]
 include = ["cloudmesh.ee", "cloudmesh.ee.*"]
