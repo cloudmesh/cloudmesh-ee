@@ -66,7 +66,6 @@ class ExperimentExecutor:
     def progress_to_dict(input_string):
         cleaned_string = input_string.replace("# cloudmesh", "")
         key_value_pairs = [item.split("=") for item in cleaned_string.split()]
-        print (key_value_pairs)
         result_dict = {key: value for key, value in key_value_pairs}
         return result_dict
 
@@ -89,8 +88,6 @@ class ExperimentExecutor:
                 config_dir = f"{directory}/{entry.name}"
                 config_file = f"{config_dir}/{config}"
                 log_file = f"{config_dir}/{log}"
-
-                print (log_file)
 
                 if debug:
                     print(config_file)
