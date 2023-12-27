@@ -12,6 +12,7 @@ import shutil
 import yaml
 from nbconvert.exporters import PythonExporter
 import humanize
+import glob
 
 from cloudmesh.common.util import readfile
 from cloudmesh.rivanna.rivanna import Rivanna
@@ -61,9 +62,15 @@ class ExperimentExecutor:
         # self.gpu = None
         self.copycode = None
 
-  
+    @staticmethod
+    def progress_to_dict(input_string):
+        cleaned_string = input_string.replace("# cloudmesh", "")
+        key_value_pairs = [item.split("=") for item in cleaned_string.split()]
+        print (key_value_pairs)
+        result_dict = {key: value for key, value in key_value_pairs}
+        return result_dict
 
-    def list(self, directory="project", config="config.yaml", debug=False, verbose=True):
+    def list(self, directory="project", config="config.yaml", log="*.out", debug=False, verbose=True):
         """Lists all experiments
 
         Returns:
@@ -81,14 +88,31 @@ class ExperimentExecutor:
             if entry.is_dir():
                 config_dir = f"{directory}/{entry.name}"
                 config_file = f"{config_dir}/{config}"
+                log_file = f"{config_dir}/{log}"
+
+                print (log_file)
+
                 if debug:
                     print(config_file)
+                progress = None
+                try:
+                    logfilename = glob.glob(log_file)[0]
+                    log_content = readfile(logfilename).strip()
+                    state = Shell.find_lines_with(log_content, "# cloudmesh status=")
+                    line = state[-1].strip()
+                    state = ExperimentExecutor.progress_to_dict(line)
+                    status = state["status"]
+                    msg = state["msg"]
+                    progress = f"{status}: {msg}"
+                except Exception as e:
+                    print (e)
+                    progress = None
                 content = yaml.safe_load(readfile(config_file))
                 content = content["experiment"]
                 # space = Shell.calculate_disk_space(config_dir)
                 content["space"] = Shell.calculate_disk_space(config_dir)
                 content["space"] = humanize.naturalsize(content["space"])
-
+                content["progress"] = str(progress)
                 experiments.append(content)
             if verbose:
                 progress_bar.update(1)

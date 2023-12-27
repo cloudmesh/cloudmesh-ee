@@ -38,7 +38,7 @@ class EeCommand(PluginCommand):
                                 [--experiment=EXPERIMENT]
                                 [--flat]
                                 [--copycode=CODE]
-                ee list [DIRECTORY]
+                ee list [DIRECTORY] [--verbose]
                 ee slurm start
                 ee slurm stop
                 ee slurm info
@@ -140,6 +140,7 @@ class EeCommand(PluginCommand):
                        "account",
                        "yaml",
                        "json",
+                       "log"
                        "filename",
                        "gpu",
                        "copycode",
@@ -203,9 +204,9 @@ class EeCommand(PluginCommand):
         elif arguments.list:
                 
                 directory = arguments.DIRECTORY or "project"
-    
+                log = arguments.log or "*.out"
                 ee = ExperimentExecutor()
-                ee.list(directory)
+                ee.list(directory=directory, log=log, verbose=arguments.verbose)
     
                 return ""   
         elif arguments.generate:
