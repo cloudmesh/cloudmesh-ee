@@ -68,8 +68,33 @@ class ExperimentExecutor:
         key_value_pairs = [item.split("=") for item in cleaned_string.split()]
         result_dict = {key: value for key, value in key_value_pairs}
         return result_dict
+    
+    @staticmethod
+    def count_word_occurrences(list_of_dicts):
+        word_count = {'total': len(list_of_dicts),
+                      'pending': 0}
+        for dictionary in list_of_dicts:
+            if 'progress' in dictionary:
+                progress_value = dictionary['progress']
+                try:
+                    # Split the progress_value into word and value
+                    word, value = progress_value.split(':')
+                    # Count occurrences for each word
+                    if word in word_count:
+                        word_count[word] += 1
+                    else:
+                        word_count[word] = 1
+                except:
+                    word["pending"] + 1
+        return word_count
 
-    def list(self, directory="project", config="config.yaml", log="*.out", debug=False, verbose=True):
+
+    def list(self, directory="project", 
+             config="config.yaml", 
+             log="*.out", 
+             debug=False, 
+             verbose=True, 
+             table=True):
         """Lists all experiments
 
         Returns:
@@ -83,6 +108,7 @@ class ExperimentExecutor:
             num_entries = sum(1 for entry in os.scandir(directory) if entry.is_dir())
             progress_bar = tqdm(total=num_entries, desc="Processing", ncols=70)  # Set ncols to 70
 
+        header = None
         for entry in os.scandir(directory):
             if entry.is_dir():
                 config_dir = f"{directory}/{entry.name}"
@@ -102,7 +128,7 @@ class ExperimentExecutor:
                     msg = state["msg"]
                     progress = f"{status}: {msg}"
                 except Exception as e:
-                    print (e)
+                    # print (e)
                     progress = None
                 content = yaml.safe_load(readfile(config_file))
                 content = content["experiment"]
@@ -111,12 +137,21 @@ class ExperimentExecutor:
                 content["space"] = humanize.naturalsize(content["space"])
                 content["progress"] = str(progress)
                 experiments.append(content)
+                if header is None:
+                    header = content.keys()
             if verbose:
                 progress_bar.update(1)
         if verbose:
             progress_bar.close()
 
-        print(Printer.write(experiments))
+        if table:
+            print(Printer.write(experiments, order=header))
+
+        summary = ExperimentExecutor.count_word_occurrences(experiments)
+        summary_str = ', '.join([f'{key}: {value}' for key, value in summary.items()])
+        print(summary_str)
+
+
     import shutil
 
     def info(self, verbose=None):

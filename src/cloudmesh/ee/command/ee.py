@@ -38,7 +38,7 @@ class EeCommand(PluginCommand):
                                 [--experiment=EXPERIMENT]
                                 [--flat]
                                 [--copycode=CODE]
-                ee list [DIRECTORY] [--verbose]
+                ee list [DIRECTORY] [--verbose] [--summary]
                 ee slurm start
                 ee slurm stop
                 ee slurm info
@@ -147,8 +147,10 @@ class EeCommand(PluginCommand):
                        "os",
                        "job_type",
                        "flat",
+                       "summary",
                        "dryrun")
 
+        arguments.summary = arguments.summary or False
         verbose = arguments["--verbose"]
         if verbose:
             banner("experiment batch generator")
@@ -203,10 +205,12 @@ class EeCommand(PluginCommand):
 
         elif arguments.list:
                 
+                table = not arguments.summary
+                
                 directory = arguments.DIRECTORY or "project"
                 log = arguments.log or "*.out"
                 ee = ExperimentExecutor()
-                ee.list(directory=directory, log=log, verbose=arguments.verbose)
+                ee.list(directory=directory, log=log, verbose=arguments.verbose, table=table)
     
                 return ""   
         elif arguments.generate:
