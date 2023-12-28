@@ -74,16 +74,18 @@ class ExperimentExecutor:
         word_count = {'total': len(list_of_dicts),
                       'pending': 0}
         for dictionary in list_of_dicts:
+            word = {}
             if 'progress' in dictionary:
-                progress_value = dictionary['progress']
                 try:
+                    progress_value = dictionary['progress']
                     # Split the progress_value into word and value
-                    word, value = progress_value.split(':')
-                    # Count occurrences for each word
-                    if word in word_count:
-                        word_count[word] += 1
-                    else:
-                        word_count[word] = 1
+                    if ":" in progress_value:
+                        word, value = progress_value.split(':')
+                        # Count occurrences for each word
+                        if word in word_count:
+                            word_count[word] += 1
+                        else:
+                            word_count[word] = 1
                 except:
                     word["pending"] + 1
         return word_count
