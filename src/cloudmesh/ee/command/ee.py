@@ -140,7 +140,7 @@ class EeCommand(PluginCommand):
                        "account",
                        "yaml",
                        "json",
-                       "log"
+                       "log",
                        "filename",
                        "gpu",
                        "copycode",

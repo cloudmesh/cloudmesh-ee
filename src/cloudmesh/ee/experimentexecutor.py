@@ -71,23 +71,31 @@ class ExperimentExecutor:
     
     @staticmethod
     def count_word_occurrences(list_of_dicts):
-        word_count = {'total': len(list_of_dicts),
-                      'pending': 0}
-        for dictionary in list_of_dicts:
-            word = {}
-            if 'progress' in dictionary:
-                try:
-                    progress_value = dictionary['progress']
-                    # Split the progress_value into word and value
-                    if ":" in progress_value:
-                        word, value = progress_value.split(':')
-                        # Count occurrences for each word
-                        if word in word_count:
-                            word_count[word] += 1
-                        else:
-                            word_count[word] = 1
-                except:
-                    word["pending"] + 1
+        word_count = {
+            'total': len(list_of_dicts),
+            'pending': 0
+        }
+
+        for d in list_of_dicts:
+            progress_value = d.get('progress')
+
+            # No progress recorded
+            if not progress_value or progress_value == "None":
+                word_count['pending'] += 1
+                continue
+
+            try:
+                # Expect formats like "RUNNING: blah blah"
+                if ":" in progress_value:
+                    word, _ = progress_value.split(":", 1)
+                    word = word.strip()
+                    word_count[word] = word_count.get(word, 0) + 1
+                else:
+                    # Weird format → treat as pending
+                    word_count['pending'] += 1
+            except Exception:
+                word_count['pending'] += 1
+
         return word_count
 
 
@@ -343,7 +351,7 @@ class ExperimentExecutor:
             dict: self.data with all variaples added with os.name: value
         """
         if variables is not None:
-            if os not in self.data:
+            if "os" not in self.data:
                 self.data["os"] = {}
             for key in variables:
                 self.data["os"][key] = os.environ[key]
