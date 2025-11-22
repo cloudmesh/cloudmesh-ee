@@ -747,7 +747,7 @@ class ExperimentExecutor:
             parameters = experiment["experiment"]
             directory = experiment["directory"]
             script = os.path.basename(experiment["script"])
-            print(f"{parameters} (cd {directory} && {cmd} {script})")
+            print(f"(cd {directory} && {cmd} {script})  # {parameters}")
 
     def generate_setup_from_configuration(self, configuration, replace_all=True):
         """generates a setup directory from the configuration parameters
