@@ -1,0 +1,37 @@
+ee.tools package
+================
+
+Submodules
+----------
+
+ee.tools.StopWatch module
+-------------------------
+
+.. automodule:: ee.tools.StopWatch
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ee.tools.parallel\_executor module
+----------------------------------
+
+.. automodule:: ee.tools.parallel_executor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ee.tools.sequential\_executor module
+------------------------------------
+
+.. automodule:: ee.tools.sequential_executor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: ee.tools
+   :members:
+   :undoc-members:
+   :show-inheritance:

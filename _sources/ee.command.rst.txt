@@ -1,0 +1,21 @@
+ee.command package
+==================
+
+Submodules
+----------
+
+ee.command.ee module
+--------------------
+
+.. automodule:: ee.command.ee
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: ee.command
+   :members:
+   :undoc-members:
+   :show-inheritance:
