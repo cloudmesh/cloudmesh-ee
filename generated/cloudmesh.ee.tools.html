@@ -141,69 +141,36 @@ parallel_executor.py -h | –help</p>
 executor.execute_with_yaml(“example.yaml”)
 executor.execute()</p>
 </dd>
-<dt>Attributes:</dt><dd><p>info (dict): Information about the execution.
-steps (list): List of steps to be executed.
-dependencies (dict): Dependencies between steps.</p>
-</dd>
-<dt>Methods:</dt><dd><p>load_yaml(yaml_path): Load execution information from a YAML file.
-load_json(json_path): Load execution information from a JSON file.
-execute_step(step): Execute a single step.
-execute_with_yaml(yaml_path): Load and execute steps from a YAML file.
-execute(): Execute all loaded steps.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor = ParallelExecutor()
-executor.execute_with_yaml(“example.yaml”)
-executor.execute()</p>
-</dd>
 </dl>
-<p>Initialize the ParallelExecutor.</p>
-<p>Sets up logging and initializes attributes.</p>
-<dl class="simple">
-<dt>Example:</dt><dd><p>executor = ParallelExecutor()</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute">
-<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute" title="Link to this definition"></a></dt>
-<dd><p>Execute all loaded steps.</p>
-<dl class="simple">
-<dt>Example:</dt><dd><p>executor.execute()</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.info">
+<span class="sig-name descname"><span class="pre">info</span></span><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.info" title="Link to this definition"></a></dt>
+<dd><p>Information about the execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_step">
-<span class="sig-name descname"><span class="pre">execute_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.execute_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_step" title="Link to this definition"></a></dt>
-<dd><p>Execute a single step.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>step (dict): Step information.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.execute_step({“name”: “step1”, “host”: “localhost”, “command”: “echo ‘Hello, World!’”})</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_with_yaml">
-<span class="sig-name descname"><span class="pre">execute_with_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.execute_with_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_with_yaml" title="Link to this definition"></a></dt>
-<dd><p>Load and execute steps from a YAML file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>yaml_path (str): Path to the YAML file.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.execute_with_yaml(“example.yaml”)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.steps">
+<span class="sig-name descname"><span class="pre">steps</span></span><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.steps" title="Link to this definition"></a></dt>
+<dd><p>List of steps to be executed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_json">
-<span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_json" title="Link to this definition"></a></dt>
-<dd><p>Load execution information from a JSON file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>json_path (str): Path to the JSON file.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.load_json(“example.json”)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.dependencies" title="Link to this definition"></a></dt>
+<dd><p>Dependencies between steps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -212,12 +179,98 @@ executor.execute()</p>
 <dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_yaml">
 <span class="sig-name descname"><span class="pre">load_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.load_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_yaml" title="Link to this definition"></a></dt>
 <dd><p>Load execution information from a YAML file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>yaml_path (str): Path to the YAML file.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.load_yaml(“example.yaml”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_json">
+<span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.load_json" title="Link to this definition"></a></dt>
+<dd><p>Load execution information from a JSON file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_step">
+<span class="sig-name descname"><span class="pre">execute_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.execute_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_step" title="Link to this definition"></a></dt>
+<dd><p>Execute a single step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_with_yaml">
+<span class="sig-name descname"><span class="pre">execute_with_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.execute_with_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute_with_yaml" title="Link to this definition"></a></dt>
+<dd><p>Load and execute steps from a YAML file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.parallel_executor.ParallelExecutor.execute" title="Link to this definition"></a></dt>
+<dd><p>Execute all loaded steps.</p>
+</dd></dl>
+
+<p class="rubric">Example</p>
+<p>executor = ParallelExecutor()
+executor.execute_with_yaml(“example.yaml”)
+executor.execute()</p>
+<p>Initialize the ParallelExecutor.</p>
+<p>Sets up logging and initializes attributes.</p>
+<p class="rubric">Example</p>
+<p>executor = ParallelExecutor()</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Execute all loaded steps.</p>
+<p class="rubric">Example</p>
+<p>executor.execute()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">execute_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.execute_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>Execute a single step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>step</strong> (<em>dict</em>) – Step information.</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<p>executor.execute_step({“name”: “step1”, “host”: “localhost”, “command”: “echo ‘Hello, World!’”})</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">execute_with_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.execute_with_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Load and execute steps from a YAML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>yaml_path</strong> (<em>str</em>) – Path to the YAML file.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>executor.execute_with_yaml(“example.yaml”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Load execution information from a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_path</strong> (<em>str</em>) – Path to the JSON file.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>executor.load_json(“example.json”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">load_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/parallel_executor.html#ParallelExecutor.load_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd><p>Load execution information from a YAML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>yaml_path</strong> (<em>str</em>) – Path to the YAML file.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>executor.load_yaml(“example.yaml”)</p>
 </dd></dl>
 
 </dd></dl>
@@ -246,88 +299,36 @@ sequential_executor.py -h | –help</p>
 executor.execute_with_yaml(“example.yaml”)
 executor.execute()</p>
 </dd>
-<dt>Attributes:</dt><dd><p>info (dict): Information about the execution.
-steps (list): List of steps to be executed.
-dryrun (bool): Flag indicating whether to perform a dry run.</p>
-</dd>
-<dt>Methods:</dt><dd><p>load_yaml(yaml_path): Load execution information from a YAML file.
-run(step, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs): Execute a single run step with optional parameters.
-prepare(step): Execute a single prepare step.
-fetch(step): Execute a single fetch step.
-load_json(json_path): Load data from a JSON file.
-execute_with_json(json_path): Load and process data from a JSON file.
-execute_with_yaml(yaml_path): Load and execute steps from a YAML file.
-execute(): Execute all loaded steps.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor = SequentialExecutor()
-executor.execute_with_yaml(“example.yaml”)
-executor.execute()</p>
-</dd>
 </dl>
-<p>Initialize the SequentialExecutor.</p>
-<p>Sets up logging and initializes attributes.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>dryrun (bool): Flag indicating whether to perform a dry run.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor = SequentialExecutor(dryrun=True)</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute">
-<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute" title="Link to this definition"></a></dt>
-<dd><p>Execute all loaded steps.</p>
-<dl class="simple">
-<dt>Example:</dt><dd><p>executor.execute()</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.info">
+<span class="sig-name descname"><span class="pre">info</span></span><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.info" title="Link to this definition"></a></dt>
+<dd><p>Information about the execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_json">
-<span class="sig-name descname"><span class="pre">execute_with_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.execute_with_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_json" title="Link to this definition"></a></dt>
-<dd><p>Load and process data from a JSON file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>json_path (str): Path to the JSON file.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.execute_with_json(“data.json”)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_yaml">
-<span class="sig-name descname"><span class="pre">execute_with_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.execute_with_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_yaml" title="Link to this definition"></a></dt>
-<dd><p>Load and execute steps from a YAML file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>yaml_path (str): Path to the YAML file.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.execute_with_yaml(“example.yaml”)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.steps">
+<span class="sig-name descname"><span class="pre">steps</span></span><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.steps" title="Link to this definition"></a></dt>
+<dd><p>List of steps to be executed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.fetch">
-<span class="sig-name descname"><span class="pre">fetch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.fetch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.fetch" title="Link to this definition"></a></dt>
-<dd><p>Execute a single fetch step.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>step (dict): Fetch step information.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.fetch({“name”: “step1”, “type”: “fetch”})</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.load_json">
-<span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.load_json" title="Link to this definition"></a></dt>
-<dd><p>Load data from a JSON file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>json_path (str): Path to the JSON file.</p>
-</dd>
-<dt>Returns:</dt><dd><p>dict: Loaded JSON data.</p>
-</dd>
-<dt>Example:</dt><dd><p>json_data = executor.load_json(“data.json”)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.dryrun">
+<span class="sig-name descname"><span class="pre">dryrun</span></span><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.dryrun" title="Link to this definition"></a></dt>
+<dd><p>Flag indicating whether to perform a dry run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -336,37 +337,169 @@ executor.execute()</p>
 <dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.load_yaml">
 <span class="sig-name descname"><span class="pre">load_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.load_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.load_yaml" title="Link to this definition"></a></dt>
 <dd><p>Load execution information from a YAML file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>yaml_path (str): Path to the YAML file.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.load_yaml(“example.yaml”)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.prepare">
-<span class="sig-name descname"><span class="pre">prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.prepare" title="Link to this definition"></a></dt>
-<dd><p>Execute a single prepare step.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>step (dict): Prepare step information.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.prepare({“name”: “step1”, “type”: “prepare”})</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.run" title="Link to this definition"></a></dt>
 <dd><p>Execute a single run step with optional parameters.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>step (dict): Run step information.
-<a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs: Optional parameters to replace placeholders in the command.</p>
-</dd>
-<dt>Example:</dt><dd><p>executor.run({“name”: “step1”, “host”: “localhost”, “type”: “run”, “command”: “echo ‘{parameters}’”}, parameters=”Hello”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.prepare">
+<span class="sig-name descname"><span class="pre">prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.prepare" title="Link to this definition"></a></dt>
+<dd><p>Execute a single prepare step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.fetch">
+<span class="sig-name descname"><span class="pre">fetch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.fetch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.fetch" title="Link to this definition"></a></dt>
+<dd><p>Execute a single fetch step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.load_json">
+<span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.load_json" title="Link to this definition"></a></dt>
+<dd><p>Load data from a JSON file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_json">
+<span class="sig-name descname"><span class="pre">execute_with_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.execute_with_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_json" title="Link to this definition"></a></dt>
+<dd><p>Load and process data from a JSON file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_yaml">
+<span class="sig-name descname"><span class="pre">execute_with_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.execute_with_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute_with_yaml" title="Link to this definition"></a></dt>
+<dd><p>Load and execute steps from a YAML file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cloudmesh.ee.tools.sequential_executor.SequentialExecutor.execute" title="Link to this definition"></a></dt>
+<dd><p>Execute all loaded steps.</p>
+</dd></dl>
+
+<p class="rubric">Example</p>
+<p>executor = SequentialExecutor()
+executor.execute_with_yaml(“example.yaml”)
+executor.execute()</p>
+<p>Initialize the SequentialExecutor.</p>
+<p>Sets up logging and initializes attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dryrun</strong> (<em>bool</em>) – Flag indicating whether to perform a dry run.</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<p>executor = SequentialExecutor(dryrun=True)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd><p>Execute all loaded steps.</p>
+<p class="rubric">Example</p>
+<p>executor.execute()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">execute_with_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.execute_with_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd><p>Load and process data from a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_path</strong> (<em>str</em>) – Path to the JSON file.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>executor.execute_with_json(“data.json”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">execute_with_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.execute_with_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd><p>Load and execute steps from a YAML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>yaml_path</strong> (<em>str</em>) – Path to the YAML file.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>executor.execute_with_yaml(“example.yaml”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">fetch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.fetch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd><p>Execute a single fetch step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>step</strong> (<em>dict</em>) – Fetch step information.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>executor.fetch({“name”: “step1”, “type”: “fetch”})</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd><p>Load data from a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_path</strong> (<em>str</em>) – Path to the JSON file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded JSON data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>json_data = executor.load_json(“data.json”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">load_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.load_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd><p>Load execution information from a YAML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>yaml_path</strong> (<em>str</em>) – Path to the YAML file.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>executor.load_yaml(“example.yaml”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dd><p>Execute a single prepare step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>step</strong> (<em>dict</em>) – Prepare step information.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>executor.prepare({“name”: “step1”, “type”: “prepare”})</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cloudmesh/ee/tools/sequential_executor.html#SequentialExecutor.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dd><p>Execute a single run step with optional parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>step</strong> (<em>dict</em>) – Run step information.</p></li>
+<li><p><strong>**kwargs</strong> – Optional parameters to replace placeholders in the command.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>executor.run({“name”: “step1”, “host”: “localhost”, “type”: “run”, “command”: “echo ‘{parameters}’”}, parameters=”Hello”)</p>
 </dd></dl>
 
 </dd></dl>
