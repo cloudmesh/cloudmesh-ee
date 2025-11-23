@@ -1,4 +1,4 @@
-cloudmesh.ee package
+src.cloudmesh.ee package
 ========================
 
 Subpackages
@@ -7,23 +7,24 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   cloudmesh.ee.command
+   src.cloudmesh.ee.command
+   src.cloudmesh.ee.tools
 
 Submodules
 ----------
 
-cloudmesh.ee.experimentexecutor module
-------------------------------
+src.cloudmesh.ee.experimentexecutor module
+------------------------------------------
 
-.. automodule:: cloudmesh.ee.experimentexecutor
+.. automodule:: src.cloudmesh.ee.experimentexecutor
    :members:
    :undoc-members:
    :show-inheritance:
 
-cloudmesh.ee.slurm module
+src.cloudmesh.ee.slurm module
 -----------------------------
 
-.. automodule:: cloudmesh.ee.slurm
+.. automodule:: src.cloudmesh.ee.slurm
    :members:
    :undoc-members:
    :show-inheritance:
@@ -31,7 +32,7 @@ cloudmesh.ee.slurm module
 Module contents
 ---------------
 
-.. automodule:: cloudmesh.ee
+.. automodule:: src.cloudmesh.ee
    :members:
    :undoc-members:
    :show-inheritance:
