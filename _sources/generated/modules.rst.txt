@@ -1,7 +1,7 @@
-src
-===
+cloudmesh
+=========
 
 .. toctree::
    :maxdepth: 4
 
-   src
+   cloudmesh

@@ -1,4 +1,0 @@
-src namespace
-=============
-
-.. py:module:: src

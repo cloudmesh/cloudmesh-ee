@@ -1,0 +1,12 @@
+cloudmesh namespace
+===================
+
+.. py:module:: cloudmesh
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   cloudmesh.ee
