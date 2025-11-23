@@ -9,14 +9,15 @@
 import sphinx_rtd_theme
 import os
 import sys
-import cloudmesh.ee
-from cloudmesh.ee.__version__ import version as cc_version
+
+from importlib.metadata import version as pkg_version
+cc_version = pkg_version("cloudmesh-ee")
 
 rtd = True
 # rtd = False
 
-sys.path.insert(0, os.path.abspath('..'))
-# sys.path.insert(0, os.path.abspath('../../cloudmesh'))
+sys.path.insert(0, os.path.abspath('../../src'))
+sys.path.insert(0, os.path.abspath('../..'))
 
 
 numfig = True
@@ -26,7 +27,7 @@ html_theme = "sphinx_rtd_theme"
 
 
 project = 'cloudmesh-ee'
-copyright = '2022, Gregor von Laszewski'
+copyright = '2025, Gregor von Laszewski'
 author = 'Gregor von Laszewski'
 release = cc_version
 
@@ -48,7 +49,7 @@ extensions.append('sphinxcontrib.openapi')
 extensions.append('sphinx_copybutton')
 
 #extensions.append('sphinx.ext.githubpages')
-#extensions.append('sphinx.ext.napoleon')
+extensions.append('sphinx.ext.napoleon')
 #extensions.append('sphinx.ext.todo')
 
 

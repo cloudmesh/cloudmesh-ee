@@ -1,15 +1,7 @@
-Cloudmesh ee
-================
-
-.. autosummary::
-   :toctree: generated
-
-   cloudmesh.ee
-   manual/ee
-
-.. rubric:: Modules
+API Reference
+=============
 
 .. toctree::
    :maxdepth: 2
 
-   modules
+   generated/cloudmesh.ee

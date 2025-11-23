@@ -522,14 +522,14 @@ class ExperimentExecutor:
 
         Args:
             script (str): The string contents of the script file.
-            variables (dict): the variables to be replaced, if ommitted
-                uses the internal variables found
-            fences ((str,str)): A 2 position tuple, that encloses
+            variables (dict): The variables to be replaced. If omitted,
+                uses the internal variables found.
+            fences ((str, str)): A 2-position tuple that encloses
                 template variables (start and end).
 
         Returns:
-            str: The script that has expanded its values based on
-            `data`.
+            tuple[str, dict]: The expanded script and a dict of replaced values
+                based on ``data``.
         """
 
         replaced = {}
@@ -553,23 +553,24 @@ class ExperimentExecutor:
 
     @staticmethod
     def permutation_generator(exp_dict):
-        """Creates a cartisian product of a {key: list, ...} object.
+        """Creates a cartesian product of a ``{key: list, ...}`` object.
 
         Args:
-            exp_dict (dict): The dictionary to process
+            exp_dict (dict): The dictionary to process.
 
         Returns:
-            list: A list of dictionaries containing the resulting
-            cartisian product.
+            list[dict]: A list of dictionaries containing the resulting
+                cartesian product.
 
-        For example
+        Example::
             my_dict = {"key1": ["value1", "value2"], "key2": ["value3", "value4"]}
-            out = permutation_generator(my_dict)
-            out # [{"key1": "value1", "key2": 'value3"},
-                #  {"key1": "value1", "key2": "value4"},
-                #  {"key1": "value2", "key2": "value3"},
-                #  {"key1": "value2", "key2": "value4"}
-
+            out = ExperimentExecutor.permutation_generator(my_dict)
+            # out == [
+            #   {"key1": "value1", "key2": "value3"},
+            #   {"key1": "value1", "key2": "value4"},
+            #   {"key1": "value2", "key2": "value3"},
+            #   {"key1": "value2", "key2": "value4"},
+            # ]
         """
         keys, values = zip(*exp_dict.items())
         return [dict(zip(keys, value)) for value in itertools.product(*values)]
@@ -707,16 +708,16 @@ class ExperimentExecutor:
             self.generate_setup_from_configuration(configuration, replace_all)
 
     def generate_submit(self, name=None, job_type='slurm'):
-        """Generates a list of commands based on the permutations for submission
+        """Generates a list of commands based on the permutations for submission.
 
         Args:
-            name (str): Name of the experiments
-            job_type (str): name of the job type used at submission such
-                as ee, slurm, jsrun, mpirun, sh, bash
+            name (str): Name of the experiments.
+            job_type (str): Name of the job type used at submission such
+                as ee, slurm, jsrun, mpirun, sh, bash.
 
         Returns:
-            None: prepars the internal data for the experiments, if set
-            to verbose, prints them
+            None: Prepares the internal data for the experiments. If ``verbose``
+                is set, prints them.
         """
 
         if ".json" not in name:

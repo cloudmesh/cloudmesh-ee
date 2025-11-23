@@ -23,7 +23,8 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	make -f Makefile man
-	sphinx-apidoc -o source ../cloudmesh
+	mkdir -p source/generated
+	python -m sphinx.ext.apidoc -o source/generated ../src/cloudmesh --implicit-namespaces -f --remove-old
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 #man:
