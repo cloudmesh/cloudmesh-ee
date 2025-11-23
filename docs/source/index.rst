@@ -13,10 +13,10 @@ Generation of experiment submission scripts based on parameter permutations.
    slurm
 
 .. toctree::
-   :maxdepth: 1
-   :caption: API
+   :maxdepth: 3
+   :caption: cloudmesh.ee
 
-   api
+   generated/cloudmesh.ee
 
 
 
