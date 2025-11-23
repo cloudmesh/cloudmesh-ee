@@ -3,6 +3,6 @@ cloudmesh-sys
 cloudmesh-inventory
 cloudmesh-configuration
 cloudmesh-progress
-cloudmesh-rivanna
+git+https://github.com/cloudmesh/cloudmesh-rivanna.git
 nbconvert
 munch
